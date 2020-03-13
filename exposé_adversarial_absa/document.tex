@@ -1,0 +1,113 @@
+\section{Introduction}
+% <The introduction includes the motivation for writing the Master's Thesis and a detailed definition of the problem.>
+
+With the integration of computer vision for self-driving cars, natural language processing for controlling our smart homes as well as other applications of machine learning in our daily lives, our reliance on technology increases and with it also the concerns about security of machine learning. These security concerns grow as natural language processing models are deployed in production systems such as fake news detectors and home assistants. Adversarial examples are a way to highlight model vulnerabilities and are useful for evaluation and interpretation. 
+In my Master's Thesis I want to generate adversarial text to attack a model based on the Bidirectional Encoder Representations from Transformers (BERT) used for Aspect-Based Sentiment Analysis (ABSA), a task in Natural Language Processing (NLP). NLP is a field of artificial intelligence (AI) that addresses the interaction between computers and humans using natural language. In 2018 Google achieved a breakthrough in NLP by introducing BERT, a powerful neural network architecture that leverages transfer-learning by pre-training the model on a large corpora with subsequent fine-tuning on a variety of downstream-tasks like text-classification, question answering, sentiment analysis and more. 
+Given its increasing use in security-sensitive applications such as sentiment analysis and toxic content detection it is highly concerning that the security vulnerabilities of Deep Learning models in NLP are still largely unknown and not a large field of research.
+
+\section{Theoretical Background}
+Deep neural networks (DNNs) are neural networks that are inspired by the biological neural network of a human brain to learn from examples and build knowledge. 
+The strengths of DNNs apart from their high performance is that their architecture can be adapted to model various modalities like image, text, video, and audio.
+Their architecture is organized as a series of layers of neurons. Each neuron serves as an individual computation unit, which is linked through connections of different weights and biases and transmits the results of its activation function on its inputs to the neurons of the next layer \cite{zhang2019adversarial}.
+In recent years DNNs have gained significant popularity in many AI applications such as computer vision (CV), natural language processing, and many more.
+
+\subsection{Natural Language Processing}
+In NLP, researchers aim to explore how computers can be used to understand natural language. Fundamental applications of NLP include automatic summarization, machine translation, language identification, Part-of-Speech (POS) tagging, question answering, textual entailment, text classification, and sentiment analysis (SA). SA is an active field of research in NLP and aims to detect opinions in text. In contrast to SA, ABSA is a more fine-grained task that extracts both the aspect mentioned and the sentiment associated with this aspect \cite{pavlopoulos2014aspect}.
+
+\subsection{BERT}
+In 2018, Google achieved a breakthrough in NLP by introducing the Bidirectional Encoder Representations from Transformers \cite{devlin2018bert}. BERT is a stack of transformer encoder layers that consist of fully-connected neural networks, so-called heads. For every input token in a sequence, e.g., a sentence, each head computes key, value, and query vectors, which are then used to create a weighted representation. The outputs of all heads in the same layer are combined and run through a fully-connected layer.
+The BERT workflow conventionally consists of (1) pre-training and (2) fine-tuning. Pre-training uses two self-supervised tasks: masked language modeling and next sentence prediction. In fine-tuning for downstream applications, one or more fully-connected layers are added on top of the final encoder layer. To compute the input-encoding, BERT first tokenizes the given sentences into referring word pieces and then combines three embedding layers (token, position, and segment) to obtain a fixed-length vector.
+The two versions of BERT (base and large), differ in the number of layers, their hidden size, and the number of attention heads.  BERT's representations are contextualized, which means that, depending on the particular context of occurrence, every input token is represented by a vector \cite{Rogers2020API}.
+
+\subsection{Adversarial Examples}
+In 2013, \cite{szegedy2013intriguing}  were the first to discover the vulnerability of several machine learning models through adversarial examples.
+By slightly modifying learning examples that are correctly classified by a machine learning model, an adversary is able to generate an adversarial example that is misclassified by the model.
+The notation 'adversarial example' is used in follow-up research to denote all kinds of perturbation samples in a general manner. In further research, \cite{goodfellow2014explaining} found that a wide variety of models with different architectures misclassify the same adversarial example, even when trained on different subsets of training data. Those examples are called transferable adversarial examples. These findings indicate that adversarial examples pose a fundamental blind spot in machine learning algorithms.
+
+\subsection{Adversarial Examples in Natural Language Processing}
+In recent years the research efforts to generate adversarial examples for DNNs for textual applications increased. \cite{Jia2017AdversarialEF} were the first to conduct adversarial attacks on textual DNNs and gained attention in the NLP community. However, compared to pixel values in image data, which are approximative continuous, textual data is discrete, and the generation of adversarial examples in NLP, therefore, more challenging \cite{carlini2018audio}. For that reason, word embeddings are often used to map natural language from a vocabulary to a corresponding vector. The three main methods to do so are called word-count based encoding (bag-of-words method), one-hot encoding, and dense encoding.
+Using gradient-based adversarial methods used in CV, in the text domain, can result in altered semantics, syntactically-incorrect sentences, or invalid words that cannot be matched with any words in the word embedding space. When attacking textual DNNs, it is crucial to carefully design variants or distance measures of the perturbation \cite{zhang2019adversarial}.
+\cite{liang2017deep} present an effective method to craft adversarial text samples by first identifying the text items essential for classification by computing the cost gradient of the input (white-box attack) as well as generating a series of occluded test samples (black-box attack). They were able to successfully fool character-level and word-level DNN-based text classifiers through the conduction of three perturbation strategies, namely insertion, modification, and removal. 
+\cite{gao2018black} use a scoring strategy to produce character-level transformations in the black-box setting on RNN based natural language classifiers. They conduct small edit operations to a text sequence such that a human would consider it similar to the original sequence. They do this by first targeting the important tokens in the sequence and then execute a modification on those tokens that can force the classifier to make a wrong prediction. To create small edit distances, they use the Levenshtein distance and perturb using four methods, namely substitution of a letter in a word with a random letter, deletion of a random letter, insertion of a random letter, and swapping two adjacent letters. Their method achieves better results than FGSM  which is most likely because the selection of words is more important than the alteration of words. 
+\cite{jin2019bert} were the first to attack the pre-trained BERT model. They first conduct a word importance ranking by analyzing the prediction change before and after deleting one word. After ranking the words according to their importance, they filter out stop words to avoid grammar destruction. Their perturbation approach is word-level based, as they replace the original word with synonyms and use word embedding vectors to measure how well different models judge the semantic similarity between the words. Also, they check part-of-speech (POS) to assure the maintainance of grammar and calculate the cosine similarity score to measure semantic similarity. \cite{goodman2020fastwordbug} generate small utility-preserving text perturbations in a black-box setting by using a scoring method similar to \cite{gao2018black} and \cite{jin2019bert} to identify important words that affect text classification. They find a relationship between POS and the importance of words for the influence of the prediction. 
+
+\section{Objectives and Research Question}
+% <Within the objective and research question, the author describes the focus of the Master's Thesis as well as the deduction of the appropriate research question(s).>
+
+In my study, I want to focus on the field of ABSA and target the state-of-the-art BERT base model as well as the BERTbased ABSA Deep Learning model of the company DeepOpinion. The thesis is supposed to determine the robustness of the BERT based NLP model for the task of ABSA against input level adversarial examples.
+Additionally, I want to investigate whether the generated adversarial examples can be transferred to other Machine Learning Models. A defense strategy against adversarial attacks is adversarial training. By training the models on the generated adversarial dataset, I want to gain knowledge about whether I can improve robustness against adversarial attacks and, as a result, improve the overall model performance.
+
+The resulting research questions answered in my thesis will be the following:
+
+How robust is BERT based NLP for the task of ABSA against input level adversarial examples?
+
+(a) How does fine-tuning influence robustness against adversarial attacks?
+
+(b) How does adversarial training influence model performance?
+
+(c) How does adversarial training influence model robustness against adversarial attacks?
+
+\section{Methodology}
+% <Illustration of the methodological approach and description of the questionnaire (quantitative) and respectively the qualitative interview or focus group (including the description of the target group, the sample of the empirical study and the anticipated evaluation/analysis of the surveyed data).>
+
+In this thesis, I will primarily investigate the prominent pre-trained BERT model introduced by Google in 2018.
+I want to determine what influence the degree of language model fine-tuning on a target domain has on the robustness of NLP models against adversarial attacks. Fine-tuning is a concept of transfer learning, where the world knowledge gained when training a task is transferred to a related task or domain \cite{pan2009survey}. To do so, I will investigate the fine-tuned hotel-model of the company DeepOpinion.
+The degree of fine-tuning is measured by the difference in performance, a model was able to achieve before, and after the fine-tuning process. 
+To obtain knowledge about the transferability of the generated adversarial examples, I will train different other machine learning models on the ABSA task and test their robustness.
+
+In research, we distinguish between two types of settings.
+An attacker operates either in a black or white-box setting, depending on the degree of access, he or she has to the system. While in a black-box setting, the attacker does not have access to the target model's internal architecture or its parameters, he or she has full access to the target model, its parameters, and input feature representations in the white-box setting. The adversary cannot alter the training data or the target model itself in both cases. 
+Other works have designed attacks in the "extended white-box" or "gray-box" setting, which describes the scenario of some aspects of the setup being known to the attacker while some are not \cite{vivek2018gray}. However, the definitions for those scenarios seem to vary in the different approaches.
+Depending on the purpose of the adversarial attacks, they can be categorized as targeted and non-targeted attacks. While in a targeted attack, the output category of a generated example is intentionally controlled to a specific target category, a non-targeted attack does not take the category of misclassified results into consideration \cite{vijayaraghavan2019generating}.
+
+In my thesis, I will conduct non-targeted attacks in the white-box setting, where I assume that the adversary possesses knowledge about the probabilities of the predictions. Since there is more realistic relevance for this scenario, non-targeted attacks will be executed.
+
+In the typical white-box scenario of generating adversarial attacks, gradient calculations are used to determine which features have to be modified in order to generate an adversarial example. The method mainly derived from the fast gradient sign method (FGSM) and is very effective in computer vision \cite{goodfellow2014explaining}. However, as mentioned above, this cannot be applied to text directly since perturbed word embeddings do not necessarily map to valid words. Other approaches are optimization-based and model-based attacks, which treat adversarial attacks as an optimization problem where the constraints are to maximize the loss of target classifiers and to minimize the difference between original and adversarial examples. While the optimization-based approach uses optimization algorithms directly, the model-based approach trains a separate model to generate adversarial examples \cite{xu2020elephant}. Successful attacks in text were conducted in the white-box setting with HotFlip \cite{ebrahimi2017hotflip} and in the black-box setting with DeepWordBug \cite{gao2018black} and TextBugger \cite{li2018textbugger}. 
+
+\cite{papernot2016crafting} used the gradient-based approach for crafting adversarial input sequences for recurrent neural network-based text classifiers and chose the word at a random position in a text input to replace it with it's nearest word embedding vector. Since there is no guarantee that words close in the embedding space are semantically similar, this approach may replace words with irrelevant, semantically different others. 
+In order to generate semantically meaningful adversarial examples, \cite{samanta2017towards} used saliency maps. This approach, however, is difficult to perform automatically. In their paper, \cite{gao2018black} introduced a two-step approach to generate adversarial attacks in text. Unlike \cite{papernot2016crafting}, \cite{gao2018black} deviate the process of generating adversarial text into two main steps. They first determine which words are critical for the model's prediction by introducing a word importance scoring function. In a second step, they generate adversarial text by making imperceptible edit operations to a text sequence, which forces the classifier to make wrong predictions.
+
+In my thesis, I want to make use of their two-step approach, including important word detection. That way, I want to determine the word which has a critical influence on the model's prediction in order to maximize the loss of the target classifiers and minimize the costs of modifying input as well as the difference between original and adversarial examples. 
+To rank words by importance for the prediction, its effect on the output classification has to be measured. As already explained, it is difficult to measure a word's perturbation by calculating gradients viably. 
+For that reason, I will remove each word of a sentence one by one and let the model predict the incomplete sentences. 
+ Comparing the prediction before and after a word is removed reflects how the word influences the classification result.
+
+To execute the perturbations, I will focus on the input level rather than the embedding or semantic level. The examples will be generated on a character level basis and can be subdivided into three steps:
+(i) Investigation of the influence of additional or missing punctuation marks,
+(ii) with the aid of the Birkbeck file, a list of common typos documented by the Oxford Text Archive, the robustness of the models on misspellings will be tested. The file contains 36,133 misspellings of 6,136 words.
+(iii) By replacing letters with visually similar-looking symbols, e.g., @ for a or 0 for o, the effect of 'Leet Speech' on the different NLP models will be explored.
+Perturbations (ii) and (iii) will be applied to the beforehand detected important words.
+
+The attacks will be executed on the target models individually.
+The result will be datasets with generated adversarial examples. To test the transferability, I will predict the datasets with the respective other models. The accuracy of the predictions will provide information about whether and to what extent the examples are universally transferable.
+The final part of my work will be adversarial training. I will use a subset of the generated adversarial examples as a training set for both models and explore, using the remaining part of adversarial examples, whether adversarial training influences the robustness against these attacks. Additionally, I will predict a regular dataset and investigate whether adversarial training has improved the overall model performance.
+
+\section{Conclusions, Limitations and Further Research}
+% <Formulation of the expected results and demonstration of the limitations the thesis will have (e.g. due to the limited time frame the thesis has). Over and above aspects of further research should be drawn.>
+
+The idea is to implement the experiments in the running BERTbased ABSA Deep Learning Hotel Model of the company DeepOpinion. The model is already fine-tuned on user-generated reviews and trained on the ABSA text classification task. This gives me a head start, which limits the scope of my work. However, the model being the company's core technology, cannot be published in my thesis, which limits the reproducibility of my work.
+
+\bibliography{References}
+
+\section{Road Map}
+
+\begin{tabular}{ |p{1.5cm}||p{7cm}|p{2cm}|p{3cm}|  }
+ \hline
+ \multicolumn{4}{|c|}{Roadmap} \\
+ \hline
+Number & Task & Duration in day(s) & Date\\
+ \hline
+ 1 & Model Trianing on ABSA Task & 2 & 10 mar 2020 \\
+ 2 & Important Word Detection & 3 & 15 mar 2020\\
+ 3 & Generation of Adversarial Attacks & 5 & 15 may 2020\\
+ 4 & Generation of adversarial dataset & 2 & 20 may 2020\\
+ 5 & Execution of Perturbations & 1 & 22 may 2020\\
+ 6 & Evaluation of Results & 7 & 23 may 2020\\
+ 7 & Transferability Testing & 2 & 1 jun 2020\\
+ 8 & Adversarial training & 3 & 5 jun 2020 \\
+ \hline
+\end{tabular}
+
+% <Presenting a realistic time schedule in regards to the Master's Thesis.>
+
+
