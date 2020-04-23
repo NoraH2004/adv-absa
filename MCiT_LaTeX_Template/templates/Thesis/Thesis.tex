@@ -1,0 +1,71 @@
+%
+% The first command in your LaTeX source must be the \documentclass command.
+\documentclass[
+    titlepage,
+    english
+]{mcitthesis}
+
+%    
+% Author
+\author{Me Myself}
+
+\title{This is my incredible awesome title of my master thesis written in \LaTeX}
+
+\advisor{FH-Prof. Dr. Max C. Who}
+
+\method{Just Science}
+
+\studentNumber{1710492031}
+
+%
+% end of the preamble, start of the body of the document source.
+\begin{document}
+
+%
+%% Title or Titlepage
+\maketitle
+
+
+\pagenumbering{Roman}
+
+%% Abstract
+\input{abstract.tex}
+\newpage
+
+%% Tables
+\tableofcontents
+\newpage
+% Table of figures
+% Table of tables
+% Table of abbreviations
+\listoffigures
+\newpage
+
+\listoftables
+\newpage
+
+%% Main Document
+\pagenumbering{arabic}
+\setcounter{page}{1}
+
+\input{document.tex}
+\clearpage
+\newpage
+
+%
+% The next two lines define the bibliography style to be used, and the bibliography file.
+%\bibliographystyle{apacite} %plain
+\bibliography{references}
+\newpage
+
+%% Affidavit
+\makeaffidavit
+\newpage
+
+%% Appendix
+\appendix
+
+
+\end{document}
+\grid
+

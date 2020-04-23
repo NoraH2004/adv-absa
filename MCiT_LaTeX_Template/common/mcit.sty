@@ -1,0 +1,123 @@
+%% mcit.sty
+%%
+%% Author: Daniel Mur-Spiegl <news@spiegl.me>
+%% ------------------------------------------
+
+%
+%% Package Information
+%% ------------------------------------------
+
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{mcit}
+
+
+%
+%% Fundamental packages
+%% ------------------------------------------
+
+\RequirePackage{xifthen}
+
+
+%
+%% Handling options
+%% ------------------------------------------
+
+\newcommand{\babellanguage}{english}
+\newboolean{titlepage}
+\setboolean{titlepage}{false}
+
+\DeclareOption{english}{\renewcommand{\babellanguage}{main=english, ngerman}}
+\DeclareOption{german}{\renewcommand{\babellanguage}{main=ngerman, english}}
+\DeclareOption{titlepage}{\setboolean{titlepage}{true}}
+\DeclareOption*{
+    \ClassWarning{mcitarticle}{Unknown style option '\CurrentOption'.}
+}
+\ProcessOptions*
+
+
+%
+%% Basic packages
+%% ------------------------------------------
+\usepackage[utf8]{inputenc}         % utf8 chars
+\usepackage[\babellanguage]{babel}  % language
+\usepackage[T1]{fontenc}            % german Umlaute
+
+\RequirePackage{graphicx}           % Graphics
+\RequirePackage{cmap}               % searchable and copyable PDF files
+
+
+%
+%% Page Layout
+%% ------------------------------------------
+\usepackage[left=3.5cm,right=2.5cm,top=2.5cm,bottom=2.5cm]{geometry}
+
+%% Font
+\usepackage{times}                      % set font to Times
+\usepackage{parskip}                    % margin after paragraphes
+\renewcommand{\baselinestretch}{1.5}    % 1.5 line spacing
+\usepackage[letterspace=130]{microtype} % Letter spacing for title
+
+
+% APA
+\usepackage{apacite}
+
+% Addional packages
+%\usepackage{relsize}
+%\usepackage{url}
+
+
+%
+%% Basic commands
+%% ------------------------------------------
+\let\oldauthor\author
+\renewcommand{\author}[1]{
+    \oldauthor{#1}
+    \newcommand{\theauthor}{#1}    
+}
+
+\let\oldtitle\title
+\renewcommand{\title}[1]{
+    \oldtitle{#1}
+    \newcommand{\thetitle}{#1}    
+}
+
+\let\olddate\date
+\renewcommand{\date}[1]{
+    \olddate{#1}
+    \newcommand{\thedate}{#1}    
+}
+
+%
+%% Titlepage
+%% ------------------------------------------
+\newcommand{\maketitlepage}{
+    \input{titlepage}
+}
+
+\let\oldmaketitle\maketitle
+\renewcommand{\maketitle}{
+    \ifthenelse{\not \boolean{titlepage}}{\oldmaketitle}{
+        \maketitlepage
+    }
+}
+
+
+
+
+%%
+
+\usepackage{scrpage2}
+%\pagestyle{scrplain}
+\pagestyle{scrheadings}
+\clearscrheadfoot
+
+%\automark{section}
+\automark[subsection]{section}
+
+\ohead{\headmark}
+\ohead{}
+\cfoot{\pagemark}
+
+%
+%%
+\bibliographystyle{apacite}
