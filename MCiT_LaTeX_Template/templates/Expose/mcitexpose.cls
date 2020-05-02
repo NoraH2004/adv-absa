@@ -1,1 +1,0 @@
-../../mcitexpose.cls
