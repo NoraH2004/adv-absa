@@ -1,4 +1,6 @@
-# BERT base Sentiment Classification
+# Adversarial Examples in NLP using BERT
+
+## BERT base Sentiment Classification
 
 Sentiment Classification with bert-base-multilingual-uncased model finetuned for sentiment analysis on product reviews in six languages.
 
