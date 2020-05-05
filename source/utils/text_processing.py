@@ -1,4 +1,5 @@
 import json 
+import pandas as pd
 
 def load_jsonline(filename, limit):
     data = []
@@ -69,3 +70,57 @@ def predict_sentiment(model, tokenizer, sentence):
 
 
 
+def filter_unchanged_predictions(ds):
+    
+#    filters the dataframe
+#    remove all rows that have an unchanged prediction
+#    if row includes a list of sentences, remove all unchanged predictions from list
+
+
+    # filter lists
+    for index, item in ds.iterrows():
+        if not isinstance(item.modified_sentence, list):
+            continue
+
+        if len(item.modified_prediction) != len(item.modified_sentence):
+            raise Exception('could not filter df row [' + str(index) + '], length of modified_prediction and modified_sentence does not match')
+
+        filtered_sentences = []
+        filtered_predictions = []
+
+        for i, sententence in enumerate(item.modified_sentence):
+            prediction = item.modified_prediction[i]
+            if item.original_prediction != prediction:
+                filtered_sentences.append(sententence)
+                filtered_predictions.append(prediction)
+
+        # optional, if list has one element, unpack
+        if len(filtered_predictions) == 1:
+            filtered_sentences = filtered_sentences[0]
+            filtered_predictions = filtered_predictions[0]
+        
+        ds.at[index,'modified_sentence'] = filtered_sentences
+        ds.at[index,'modified_prediction'] = filtered_predictions
+
+    # remove empty lists
+    ds = ds[ds.modified_sentence.str.len() != 0] 
+
+    # filter non-lists
+    ds = ds[ds.original_prediction != ds.modified_prediction]
+
+    return ds
+
+
+def generate_results_df(pmethod, ds, advds):
+        
+    results = pd.DataFrame({
+     'Perturbation Method': [pmethod],
+     'Tokenizer': ['nlptown/bert-base-multilingual-uncased-sentiment'], 
+     'Model' : ['nlptown/bert-base-multilingual-uncased-sentiment'], 
+     'Dataset':['TripAdvisor Hotel Reviews'], 
+     'Output lables': ['Range from 0 to 4 - 0 = NEG; 4 = POS'],
+     'Items in original dataset': len(ds),
+     'Items in adversarial dataset': len(advds),
+     'Percentage': (len(advds)/len(ds)*100)})
+    
+    return results.T
