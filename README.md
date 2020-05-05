@@ -25,7 +25,7 @@ Using the **leave-one-out method** for the 'important word' detection, I determi
 I removing each word of a sentence one by one and let the model predict the incomplete sentences. 
 Comparing the prediction before and after a word is removed reflects how the word influences the classification result. This procedure allows me to enhance the efficiency of my attacks.
 
-To execute the perturbations, I will focus on the input level rather than the embedding or semantic level. 
+To execute the perturbations, I focus on the input level rather than the embedding or semantic level. 
 
 ## Perturbations
 
