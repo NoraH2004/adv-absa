@@ -1,4 +1,6 @@
-def semeval_to_aspectsentiment_hr(filename):
+import xml.etree.ElementTree as ET
+
+def semeval_to_aspectsentiment_hr(filename, with_ids=False):
     sentimap = {
         'positive': 'POS',
         'negative': 'NEG',
@@ -31,17 +33,10 @@ def semeval_to_aspectsentiment_hr(filename):
                     sentiment = sentimap[o.get('polarity')]
                     aspect_category_sentiment.add((aspect_category, sentiment))
 
-                # TODO how to deal with conflicting sentiments?!
-
+                
                 aspect_sentiment_dict = {}
-                sentence_has_conflict = False
                 for asentis in aspect_category_sentiment:
-                    if asentis[0] in aspect_sentiment_dict:
-                        print('Conflicting AspectSentiment detected: ', aspect_category_sentiment)
-                        sentence_has_conflict = True
-                    else:
-                        aspect_sentiment_dict[asentis[0]] = asentis[1]
-                if not sentence_has_conflict:
+                    aspect_sentiment_dict[asentis[0]] = asentis[1]
                     sentences.append(sentence_text)
                     aspect_category_sentiments.append(aspect_sentiment_dict)
 
@@ -49,10 +44,11 @@ def semeval_to_aspectsentiment_hr(filename):
         cats.sort()
 
     idx2aspectlabel = {k: v for k, v in enumerate(cats)}
-    sentilabel2idx = {"NONE": 0, "NEG": 1, "NEU": 2, "POS": 3, "CONF": 4}
+    sentilabel2idx = {"NONE": 0, "NEG": 1, "NEU": 2, "POS": 3}
     idx2sentilabel = {k: v for v, k in sentilabel2idx.items()}
     if not with_ids:
-        return sentences, aspect_category_sentiments, (idx2aspectlabel, idx2sentilabel)
+        return sentences, aspect_category_sentiments, (idx2aspectlabel, idx2sentilabel), cats
     else:
-        return sentences, sentence_ids, aspect_category_sentiments, (idx2aspectlabel, idx2sentilabel)
+        return sentences, sentence_ids, aspect_category_sentiments, (idx2aspectlabel, idx2sentilabel), cats
+    
 

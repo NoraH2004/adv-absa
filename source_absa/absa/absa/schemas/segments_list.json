@@ -1,0 +1,55 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "ABSA Prediction Result",
+  "type": "array",
+  "items": {
+    "type": "array",
+    "items": {
+      "type": "object",
+      "required": [
+        "span",
+        "text",
+        "aspect_sentiments"
+      ],
+      "properties": {
+        "text": {
+          "type": "string",
+          "description": "segment text"
+        },
+        "span": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          },
+          "minItems": 2,
+          "maxItems": 2
+        },
+        "aspect_sentiments": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "aspect",
+              "sentiment"
+            ],
+            "properties": {
+              "aspect": {
+                "type": "string",
+                "description": "Aspect"
+              },
+              "sentiment": {
+                "type": "string",
+                "description": "Sentiment",
+                "enum": [
+                  "POS",
+                  "NEU",
+                  "NEG"
+                ]
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

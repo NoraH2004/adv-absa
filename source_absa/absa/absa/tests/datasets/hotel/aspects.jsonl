@@ -1,0 +1,29 @@
+    { "name": "Service", "group_name": "Service" }
+    { "name": "Smell", "group_name": "Experience" }
+    { "name": "Pool", "group_name": "Amenities" }
+    { "name": "Accessibility", "group_name": "General" }
+    { "name": "Reception", "group_name": "Service" }
+    { "name": "Breakfast", "group_name": "Food" }
+    { "name": "Room", "group_name": "Rooms" }
+    { "name": "Staff", "group_name": "Service" }
+    { "name": "Bathroom", "group_name": "Rooms" }
+    { "name": "WiFi", "group_name": "Amenities" }
+    { "name": "Bed", "group_name": "Amenities" }
+    { "name": "Noise level", "group_name": "Experience" }
+    { "name": "Wellness", "group_name": "Amenities" }
+    { "name": "Ambience", "group_name": "Ambience" }
+    { "name": "View", "group_name": "Ambience" }
+    { "name": "Amenities", "group_name": "Amenities" }
+    { "name": "Cleanliness", "group_name": "Experience" }
+    { "name": "Family-friendliness", "group_name": "Experience" }
+    { "name": "Maintenance", "group_name": "Experience" }
+    { "name": "Safety", "group_name": "Experience" }
+    { "name": "Dinner", "group_name": "Food" }
+    { "name": "Drinks", "group_name": "Food" }
+    { "name": "Food", "group_name": "Food" }
+    { "name": "Hotel", "group_name": "General" }
+    { "name": "Payment", "group_name": "General" }
+    { "name": "Value for money", "group_name": "General" }
+    { "name": "Activities", "group_name": "Surroundings" }
+    { "name": "Location", "group_name": "Surroundings" }
+    { "name": "Public transport", "group_name": "Surroundings" }
