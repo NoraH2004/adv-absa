@@ -43,24 +43,21 @@ def to_punctuation(word):
     return ''.join((word, ','))
 
 
-def generate_modified_sentences(original_sentences, important_words, modified_words):
-    assert len(original_sentences)==len(important_words)==len(modified_words), 'List length is not equal!'
+def generate_modified_sentences(original_sentences, important_words_list, modified_words_list):
+    assert len(original_sentences)==len(important_words_list)==len(modified_words_list), 'List length is not equal!'
     
-    modified_sentences = []
-    for index, sentence in enumerate(original_sentences):
-        if modified_words[index] is None:
-            modified_sentences.append(sentence)
-            continue  
-            
-        if isinstance(modified_words[index], list): 
-            modified_sentences_list = []
-            for word in modified_words[index]:
-                modified_sentences_list.append(sentence.replace(important_words[index], word))
-            modified_sentences.append(modified_sentences_list)               
-            continue        
-        modified_sentences.append(sentence.replace(important_words[index], modified_words[index]))   
+    modified_sentences_list = []
+    for sent_idx, sentence in enumerate(original_sentences):
+                        
+        modified_sentences = []
+        for iword_idx, iword in enumerate(important_words_list[sent_idx]):
+            for mwords in modified_words_list[sent_idx]:
+                for mword in mwords:               
+                      
+                    modified_sentences.append(sentence.replace(iword, mword))
+        modified_sentences_list.append(modified_sentences)
         
-    return modified_sentences
+    return modified_sentences_list
 
 def predict_sentiment(model, tokenizer, sentence):
     inputs = tokenizer.encode_plus(sentence, add_special_tokens=True, return_tensors='pt')

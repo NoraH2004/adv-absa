@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Reviews>
+    <Review rid="79">
+        <sentences>
+            <sentence id="79:0">
+                <text>Being a PC user my whole life</text>
+            </sentence>
+            <sentence id="79:1">
+                <text>This computer is absolutely amazing.</text>
+                <Opinions>
+                    <Opinion category="LAPTOP#GENERAL" polarity="positive"/>
+                </Opinions>
+            </sentence>
+            <sentence id="79:2">
+                <text>got more than 10 hours of battery.</text>
+                <Opinions>
+                    <Opinion category="BATTERY#OPERATION_PERFORMANCE" polarity="positive"/>
+                </Opinions>
+            </sentence>
+            <sentence id="79:3">
+                <text>a super fast processor and a really nice graphics card.</text>
+                <Opinions>
+                    <Opinion category="CPU#OPERATION_PERFORMANCE" polarity="positive"/>
+                </Opinions>
+            </sentence>
+            <sentence id="79:4">
+                <text>Also plenty of storage with 250 GB ram.</text>
+                <Opinions>
+                    <Opinion category="HARD_DISC#DESIGN_FEATURES" polarity="positive"/>
+                </Opinions>
+            </sentence>
+            <sentence id="79:5">
+                <text>I'm shocked as to how easy it is to get used to.</text>
+                <Opinions>
+                    <Opinion category="LAPTOP#OPERATION_PERFORMANCE" polarity="positive"/>
+                </Opinions>
+            </sentence>
+            <sentence id="79:6">
+                <text>I've only had mine a day but I'm already used to it.</text>
+                <Opinions>
+                    <Opinion category="LAPTOP#USABILITY" polarity="positive"/>
+                </Opinions>
+            </sentence>
+            <sentence id="79:7" OutOfScope="TRUE">
+                <text>MACS ARE AMAZING!</text>
+            </sentence>
+            <sentence id="79:8">
+                <text>GET THIS COMPUTER FOR PORTABILITY AND FAST PROCESSING!</text>
+                <Opinions>
+                    <Opinion category="LAPTOP#PORTABILITY" polarity="positive"/>
+                </Opinions>
+            </sentence>
+        </sentences>
+    </Review>
+   <Review rid="10">
+        <sentences>
+            <sentence id="10:0">
+                <text>the laptop was really good and it goes really fast just the way i thought it would run.</text>
+                <Opinions>
+                    <Opinion category="LAPTOP#GENERAL" polarity="positive"/>
+                </Opinions>
+            </sentence>
+            <sentence id="10:1">
+                <text>i would really recommend it to any person out there to get this laptop because its really worth it.</text>
+                <Opinions>
+                    <Opinion category="LAPTOP#GENERAL" polarity="positive"/>
+                </Opinions>
+            </sentence>
+            <sentence id="10:2">
+                <text>And its really cheap and you wont regret buying it.</text>
+                <Opinions>
+                    <Opinion category="LAPTOP#PRICE" polarity="positive"/>
+                </Opinions>
+            </sentence>
+        </sentences>
+    </Review>
+</Reviews>
