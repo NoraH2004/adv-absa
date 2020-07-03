@@ -34,7 +34,6 @@
                 <text>This computer is really fast and I'm shocked as to how easy it is to get used to...</text>
                 <Opinions>
                     <Opinion category="LAPTOP#OPERATION_PERFORMANCE" polarity="positive"/>
-                    <Opinion category="LAPTOP#USABILITY" polarity="positive"/>
                 </Opinions>
             </sentence>
             <sentence id="79:6">
@@ -43,13 +42,12 @@
                     <Opinion category="LAPTOP#USABILITY" polarity="positive"/>
                 </Opinions>
             </sentence>
-            <sentence id="79:7" OutOfScope="TRUE">
+            <sentence>
                 <text>MACS ARE AMAZING!!!</text>
             </sentence>
             <sentence id="79:8">
                 <text>GET THIS COMPUTER FOR PORTABILITY AND FAST PROCESSING!!!</text>
                 <Opinions>
-                    <Opinion category="LAPTOP#PORTABILITY" polarity="positive"/>
                     <Opinion category="CPU#OPERATION_PERFORMANCE" polarity="positive"/>
                 </Opinions>
             </sentence>
@@ -61,7 +59,6 @@
                 <text>the laptop was really good and it goes really fast just the way i thought it would of run.</text>
                 <Opinions>
                     <Opinion category="LAPTOP#GENERAL" polarity="positive"/>
-                    <Opinion category="LAPTOP#OPERATION_PERFORMANCE" polarity="positive"/>
                 </Opinions>
             </sentence>
             <sentence id="10:1">
