@@ -43,21 +43,35 @@ def to_punctuation(word):
     return ''.join((word, ','))
 
 
-def generate_modified_sentences(original_sentences, important_words_list, modified_words_list):
-    assert len(original_sentences)==len(important_words_list)==len(modified_words_list), 'List length is not equal!'
+def generate_modified_sentence_packages(original_sentences_unfiltered, important_words_packages, modified_words_packages):
+    assert len(original_sentences_unfiltered)==len(important_words_packages)==len(modified_words_packages), 'List length is not equal!'
     
-    modified_sentences_list = []
-    for sent_idx, sentence in enumerate(original_sentences):
-                        
-        modified_sentences = []
-        for iword_idx, iword in enumerate(important_words_list[sent_idx]):
-            for mwords in modified_words_list[sent_idx]:
-                for mword in mwords:               
-                      
-                    modified_sentences.append(sentence.replace(iword, mword))
-        modified_sentences_list.append(modified_sentences)
-        
-    return modified_sentences_list
+    original_sentences = []
+    modified_sentence_packages = []
+    for i, sentence in enumerate(original_sentences_unfiltered):
+        iw_per_sentence = modified_words_packages[i]
+
+        modified_sentences_word_list = []
+        for e, word_variances in enumerate(iw_per_sentence):
+            iw_variances_per_word = iw_per_sentence[e]
+            
+            modified_sentences_word_variances = []
+            for word in iw_variances_per_word:
+                if important_words_packages[i][e] != word:
+                    mod_sent = sentence.replace(important_words_packages[i][e],word)
+                    modified_sentences_word_variances.append(mod_sent)     
+                    
+            if modified_sentences_word_variances:
+                modified_sentences_word_list.append(modified_sentences_word_variances)
+            
+          
+        if modified_sentences_word_list:
+            modified_sentence_packages.append(modified_sentences_word_list)
+            original_sentences.append(sentence)
+            
+    return original_sentences, modified_sentence_packages
+
+
 
 def predict_sentiment(model, tokenizer, sentence):
     inputs = tokenizer.encode_plus(sentence, add_special_tokens=True, return_tensors='pt')
