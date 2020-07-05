@@ -36,7 +36,6 @@ def to_leet(word):
 def to_typo(typodict, word):
     if word in typodict:
         return typodict[word]
-    else: return None
 
 def to_punctuation(word):
     
@@ -48,18 +47,33 @@ def generate_modified_sentence_packages(original_sentences_unfiltered, important
     
     original_sentences = []
     modified_sentence_packages = []
+    modified_sentence_list_lvl0 = []
     for i, sentence in enumerate(original_sentences_unfiltered):
         iw_per_sentence = modified_words_packages[i]
+       # print('iw_per_sentence: ', iw_per_sentence)
+        
 
-        modified_sentences_word_list = []
+        modified_sentences_word_list = []        
         for e, word_variances in enumerate(iw_per_sentence):
             iw_variances_per_word = iw_per_sentence[e]
+            # print('iw_variances_per_word: ', iw_variances_per_word)
             
             modified_sentences_word_variances = []
             for word in iw_variances_per_word:
-                if important_words_packages[i][e] != word:
-                    mod_sent = sentence.replace(important_words_packages[i][e],word)
-                    modified_sentences_word_variances.append(mod_sent)     
+                #print('word: ', word) 
+                if isinstance(word, list):
+                    for variance in word:
+                        # print('variance: ', variance)
+                        if important_words_packages[i][e] != variance and variance is not None:
+                            mod_sent = sentence.replace(important_words_packages[i][e],variance)
+                            modified_sentences_word_variances.append(mod_sent) 
+
+                else:
+                    # print(word)
+                    if important_words_packages[i][e] != word and word is not None:
+                        mod_sent = sentence.replace(important_words_packages[i][e],word)
+                        modified_sentences_word_variances.append(mod_sent) 
+                                  
                     
             if modified_sentences_word_variances:
                 modified_sentences_word_list.append(modified_sentences_word_variances)
@@ -69,8 +83,9 @@ def generate_modified_sentence_packages(original_sentences_unfiltered, important
             modified_sentence_packages.append(modified_sentences_word_list)
             original_sentences.append(sentence)
             
+                    
     return original_sentences, modified_sentence_packages
-
+    
 
 
 def predict_sentiment(model, tokenizer, sentence):
