@@ -44,7 +44,7 @@ acceptible->acceptable
 accessable->accessible
 acident->accident
 accidentaly->accidentally
-accidently->accidentally
+accidently-> accidentally
 acclimitization->acclimatization
 accomadate->accommodate
 accomadated->accommodated
@@ -355,7 +355,7 @@ appropraite->appropriate
 appropropiate->appropriate
 approproximate->approximate
 approxamately->approximately
-approxiately->approximately
+approxiately-> approximately
 approximitely->approximately
 aprehensive->apprehensive
 apropriate->appropriate
@@ -4280,4 +4280,3 @@ thast->that, that's
 theyre->they're
 todays->today's
 wasnt->wasn't
-

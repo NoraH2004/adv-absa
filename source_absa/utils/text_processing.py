@@ -149,13 +149,13 @@ def generate_results_df(pmethod, ds, advds, *args):
      'Model' : ['nlptown/bert-base-multilingual-uncased-sentiment'], 
      'Dataset':['TripAdvisor Hotel Reviews'], 
      'Output lables': ['Range from 0 to 4 - 0 = NEG; 4 = POS'],
-     'Items in original dataset': len(ds),
-     'Number of modifyable items original': len(advds),
-     'Items in adversarial dataset': len(advds),
-     'Percentage': (len(advds)/len(ds)*100)})
+     'Sentences in Dataset:': 2694,
+     'Modifyable Sentences in Dataset': len(advds),
+     'Modified Sentences to predict': len(advds),
+     'Successfull Modifications': 'syx'
+     'Percentage': (results/len(ds)*100)})
     
     return results.T
-
 
 def generate_multipredictions(original_predictions, modified_predictions):
     extended_original_predictions = []
