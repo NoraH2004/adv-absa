@@ -45,6 +45,7 @@ def to_punctuation(word):
 def generate_modified_sentence_packages(original_sentences_unfiltered, important_words_packages, modified_words_packages):
     assert len(original_sentences_unfiltered)==len(important_words_packages)==len(modified_words_packages), 'List length is not equal!'
     
+    len_mod_sent = 0
     original_sentences = []
     modified_sentence_packages = []
     modified_sentence_list_lvl0 = []
@@ -67,12 +68,14 @@ def generate_modified_sentence_packages(original_sentences_unfiltered, important
                         if important_words_packages[i][e] != variance and variance is not None:
                             mod_sent = sentence.replace(important_words_packages[i][e],variance)
                             modified_sentences_word_variances.append(mod_sent) 
+                            len_mod_sent += 1
 
                 else:
                     # print(word)
                     if important_words_packages[i][e] != word and word is not None:
                         mod_sent = sentence.replace(important_words_packages[i][e],word)
                         modified_sentences_word_variances.append(mod_sent) 
+                        len_mod_sent += 1
                                   
                     
             if modified_sentences_word_variances:
@@ -84,7 +87,7 @@ def generate_modified_sentence_packages(original_sentences_unfiltered, important
             original_sentences.append(sentence)
             
                     
-    return original_sentences, modified_sentence_packages
+    return original_sentences, modified_sentence_packages, len_mod_sent
     
 
 
@@ -152,7 +155,7 @@ def generate_results_df(pmethod, ds, advds, *args):
      'Sentences in Dataset:': 2694,
      'Modifyable Sentences in Dataset': len(advds),
      'Modified Sentences to predict': len(advds),
-     'Successfull Modifications': 'syx'
+     'Successfull Modifications': 'syx',
      'Percentage': (results/len(ds)*100)})
     
     return results.T

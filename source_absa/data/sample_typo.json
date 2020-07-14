@@ -1,0 +1,167 @@
+[
+  {
+    "original_sentence": "Oh my goodness-I am not a happy camper.",
+    "original_prediction": [
+      {
+        "aspect": "Laptop (general)",
+        "sentiment": "NEG"
+      }
+    ],
+    "modified_sentence": [
+      "Oh my goodness-I am nto a happy camper.",
+      "Oh my goodness-I am onot a happy camper."
+    ],
+    "modified_prediction": [
+      [
+        {
+          "aspect": "Laptop (general)",
+          "sentiment": "POS"
+        }
+      ],
+      [
+        {
+          "aspect": "Laptop (general)",
+          "sentiment": "POS"
+        }
+      ]
+    ]
+  },
+  {
+    "original_sentence": "When I got the computer back and realizwed it still was not correct HP told me it was out of warranty and now it was my problem.",
+    "original_prediction": [
+      {
+        "aspect": "Laptop (general)",
+        "sentiment": "NEG"
+      }
+    ],
+    "modified_sentence": [
+      "When I got the cmoputer back and realizwed it still was not correct HP told me it was out of warranty and now it was my problem.",
+      "When I got the coputer back and realizwed it still was not correct HP told me it was out of warranty and now it was my problem.",
+      "When I got the computer back and realizwed it still was nto correct HP told me it was out of warranty and now it was my problem.",
+      "When I got the computer back and realizwed it still was not correct HP told me it was out of warranty and nowe it was my problem."
+    ],
+    "modified_prediction": [
+      [
+      ],
+      [
+      ],
+      [
+      ],
+      [
+      ]
+    ]
+  },
+  {
+    "original_sentence": "Currently if I use the laptop I can't sit it on my lap because it will burn my legs.",
+    "original_prediction": [
+    ],
+    "modified_sentence": [
+      "Currently if I uise the laptop I can't sit it on my lap becauise it will burn my legs.",
+      "Currently if I use the laptop I can't sit it on my lap becasue it will burn my legs.",
+      "Currently if I use the laptop I can't sit it on my lap becuase it will burn my legs.",
+      "Currently if I use the laptop I can't sit it on my lap becouse it will burn my legs.",
+      "Currently if I use the laptop I can't sit it on my lap baceause it will burn my legs.",
+      "Currently if I use the laptop I can't sit it on my lap beccause it will burn my legs.",
+      "Currently if I use the laptop I can't sit it on my lap beacuse it will burn my legs.",
+      "Currently if I use the laptop I can't sit it on my lap because it willk burn my legs.",
+      "Currently if I use the laptop I can't sit it on my lap because it iwll burn my legs.",
+      "Currently if I use the laptop I can't sit it on my lap because it wille burn my legs.",
+      "Currently if I use the laptop I can't sit it on my lap because it wiull burn my legs."
+    ],
+    "modified_prediction": [
+      [
+        {
+          "aspect": "Temperature",
+          "sentiment": "NEG"
+        }
+      ],
+      [
+        {
+          "aspect": "Temperature",
+          "sentiment": "NEG"
+        }
+      ],
+      [
+        {
+          "aspect": "Temperature",
+          "sentiment": "NEG"
+        }
+      ],
+      [
+        {
+          "aspect": "Temperature",
+          "sentiment": "NEG"
+        }
+      ],
+      [
+        {
+          "aspect": "Temperature",
+          "sentiment": "NEG"
+        }
+      ],
+      [
+        {
+          "aspect": "Temperature",
+          "sentiment": "NEG"
+        }
+      ],
+      [
+        {
+          "aspect": "Temperature",
+          "sentiment": "NEG"
+        }
+      ],
+      [
+        {
+          "aspect": "Temperature",
+          "sentiment": "NEG"
+        }
+      ],
+      [
+        {
+          "aspect": "Temperature",
+          "sentiment": "NEG"
+        }
+      ],
+      [
+        {
+          "aspect": "Temperature",
+          "sentiment": "NEG"
+        }
+      ],
+      [
+        {
+          "aspect": "Temperature",
+          "sentiment": "NEG"
+        }
+      ]
+    ]
+  },
+  {
+    "original_sentence": "It's more expensive but well worth it in the long run.",
+    "original_prediction": [
+      {
+        "aspect": "Price",
+        "sentiment": "POS"
+      }
+    ],
+    "modified_sentence": [
+      "It's more expensive but vell worth it in the long run.",
+      "It's more expensive but well worth it in tje long run."
+    ],
+    "modified_prediction": [
+      [
+        {
+          "aspect": "Price",
+          "sentiment": "NEU"
+        }
+      ],
+      [
+        {
+          "aspect": "Price",
+          "sentiment": "NEU"
+        }
+      ]
+    ]
+  }
+]

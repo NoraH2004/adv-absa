@@ -1,0 +1,113 @@
+[
+  {
+    "original_sentence": "and its really cheap and you wont regret buying it.",
+    "original_prediction": [
+      {
+        "aspect": "Laptop (general)",
+        "sentiment": "POS"
+      },
+      {
+        "aspect": "Price",
+        "sentiment": "POS"
+      }
+    ],
+    "modified_sentence": [
+      "and its really ch34p and you wont regret buying it.",
+      "and its really cheap and you wont r3gr3t buying it."
+    ],
+    "modified_prediction": [
+      [
+        {
+          "aspect": "Laptop (general)",
+          "sentiment": "POS"
+        }
+      ],
+      [
+        {
+          "aspect": "Price",
+          "sentiment": "POS"
+        }
+      ]
+    ]
+  },
+  {
+    "original_sentence": "without a big ol' clunky machine in my backpack, I feel like I can do programming homework anywhere.",
+    "original_prediction": [
+      {
+        "aspect": "Portability",
+        "sentiment": "POS"
+      }
+    ],
+    "modified_sentence": [
+      "without a big ol' clunky machine in my b4ckp4ck, I feel like I can do programming homework anywhere.",
+      "without a big ol' clunky machine in my backpack, I feel like I can do programming homework 4nywh3r3."
+    ],
+    "modified_prediction": [
+      [
+      ],
+      [
+      ]
+    ]
+  },
+  {
+    "original_sentence": "Oh my goodness-I am not a happy camper.",
+    "original_prediction": [
+      {
+        "aspect": "Laptop (general)",
+        "sentiment": "NEG"
+      }
+    ],
+    "modified_sentence": [
+      "Oh my goodness-I am n0t a happy camper.",
+      "Oh my goodness-I am not a h4ppy camper."
+    ],
+    "modified_prediction": [
+      [
+        {
+          "aspect": "Laptop (general)",
+          "sentiment": "POS"
+        }
+      ],
+      [
+      ]
+    ]
+  },
+  {
+    "original_sentence": "Not easy to carry.",
+    "original_prediction": [
+      {
+        "aspect": "Weight",
+        "sentiment": "NEG"
+      },
+      {
+        "aspect": "Portability",
+        "sentiment": "NEG"
+      }
+    ],
+    "modified_sentence": [
+      "N0t easy to carry.",
+      "Not 345y to carry.",
+      "Not easy to c4rry."
+    ],
+    "modified_prediction": [
+      [
+        {
+          "aspect": "Portability",
+          "sentiment": "POS"
+        }
+      ],
+      [
+        {
+          "aspect": "Portability",
+          "sentiment": "NEG"
+        }
+      ],
+      [
+        {
+          "aspect": "Maintainability",
+          "sentiment": "NEG"
+        }
+      ]
+    ]
+  }
+]

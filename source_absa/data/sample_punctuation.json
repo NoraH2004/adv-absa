@@ -1,0 +1,115 @@
+[
+  {
+    "original_sentence": "When I got the computer back and realizwed it still was not correct HP told me it was out of warranty and now it was my problem.",
+    "original_prediction": [
+      {
+        "aspect": "Laptop (general)",
+        "sentiment": "NEG"
+      }
+    ],
+    "modified_sentence": [
+      "When I got the computer, back and realizwed it still was not correct HP told me it was out of warranty and now it was my problem.",
+      "When I got the computer back and realizwed it still was not correct HP told me it was out of warranty and now it was my problem.,"
+    ],
+    "modified_prediction": [
+      [
+      ],
+      [
+      ]
+    ]
+  },
+  {
+    "original_sentence": "Currently if I use the laptop I can't sit it on my lap because it will burn my legs.",
+    "original_prediction": [
+    ],
+    "modified_sentence": [
+      "Currently if, I use the laptop I can't sit it on my lap because it will burn my legs.",
+      "Currently if I use, the laptop I can't sit it on my lap because, it will burn my legs.",
+      "Currently if I use the laptop I can't, sit it on my lap because it will burn my legs.",
+      "Currently if I use the laptop I can't sit, it on my lap because it will burn my legs.",
+      "Currently if I use the laptop I can't sit it on my lap because, it will burn my legs.",
+      "Currently if I use the laptop I can't sit it on my lap because it will, burn my legs.",
+      "Currently if I use the laptop I can't sit it on my lap because it will burn my legs.,"
+    ],
+    "modified_prediction": [
+      [
+        {
+          "aspect": "Temperature",
+          "sentiment": "NEG"
+        }
+      ],
+      [
+        {
+          "aspect": "Temperature",
+          "sentiment": "NEG"
+        }
+      ],
+      [
+        {
+          "aspect": "Temperature",
+          "sentiment": "NEG"
+        }
+      ],
+      [
+        {
+          "aspect": "Temperature",
+          "sentiment": "NEG"
+        }
+      ],
+      [
+        {
+          "aspect": "Temperature",
+          "sentiment": "NEG"
+        }
+      ],
+      [
+        {
+          "aspect": "Temperature",
+          "sentiment": "NEG"
+        }
+      ],
+      [
+        {
+          "aspect": "Temperature",
+          "sentiment": "NEG"
+        }
+      ]
+    ]
+  },
+  {
+    "original_sentence": "It's more expensive but well worth it in the long run.",
+    "original_prediction": [
+      {
+        "aspect": "Price",
+        "sentiment": "POS"
+      }
+    ],
+    "modified_sentence": [
+      "It's more expensive but well, worth it in the long run."
+    ],
+    "modified_prediction": [
+      [
+        {
+          "aspect": "Price",
+          "sentiment": "NEU"
+        }
+      ]
+    ]
+  },
+  {
+    "original_sentence": "the manufacturer's warranty only covers replacement\/repair of parts.",
+    "original_prediction": [
+    ],
+    "modified_sentence": [
+      "the manufacturer's warranty only, covers replacement\/repair of parts."
+    ],
+    "modified_prediction": [
+      [
+        {
+          "aspect": "Maintainability",
+          "sentiment": "NEG"
+        }
+      ]
+    ]
+  }
+]
