@@ -46,7 +46,7 @@ def generate_modified_sentence_packages(original_sentences_unfiltered, important
     assert len(original_sentences_unfiltered)==len(important_words_packages)==len(modified_words_packages), 'List length is not equal!'
     
     len_mod_sent = 0
-    original_sentences = []
+    modifyable_original_sentences = []
     modified_sentence_packages = []
     modified_sentence_list_lvl0 = []
     for i, sentence in enumerate(original_sentences_unfiltered):
@@ -84,10 +84,10 @@ def generate_modified_sentence_packages(original_sentences_unfiltered, important
           
         if modified_sentences_word_list:
             modified_sentence_packages.append(modified_sentences_word_list)
-            original_sentences.append(sentence)
+            modifyable_original_sentences.append(sentence)
             
                     
-    return original_sentences, modified_sentence_packages, len_mod_sent
+    return modifyable_original_sentences, modified_sentence_packages, len_mod_sent
     
 
 
@@ -96,6 +96,71 @@ def predict_sentiment(model, tokenizer, sentence):
     prediction = model(inputs['input_ids'], token_type_ids=inputs['token_type_ids'])[0].argmax().item()
     
     return prediction
+
+
+
+# generate result dict
+
+def compare_results(original_predictions, modified_predictions):
+    
+    #function comapres original with modified predictions and returns dictionary, with only those, where the modification changed the prediction
+    
+    d_results = []
+
+    for e, modified_predictions_set in enumerate(modified_predictions):
+
+        original_prediction = original_predictions[e]
+        modified_sentences = []
+        modified_aspect_sentiments = []
+
+        for modified_sentence in modified_predictions_set:
+            if modified_sentence['aspect_sentiments'] != original_prediction['aspect_sentiments']:
+                modified_sentences.append(modified_sentence['text'])
+                modified_aspect_sentiments.append(modified_sentence['aspect_sentiments'])
+
+        if modified_sentences:
+            d_results.append(
+                    {
+                        'original_sentence': original_prediction['text'],
+                        'original_result': original_prediction['aspect_sentiments'],
+                        'modified_sentences': modified_sentences,
+                        'modified_results': modified_aspect_sentiments
+                    })
+
+    return d_results
+
+
+
+def generate_results_lists(d_results):
+    
+    # function returns single lists of results, suitable for pandas df
+    
+    original_texts = []
+    original_results = []
+    modified_texts = []
+    modified_results = []
+    
+    successfull_modifications = 0
+
+    for item in d_results:
+        original_texts.append(item['original_sentence'])
+        original_results.append(item['original_result'])
+
+        modified_text_p_sent = []
+        modified_result_p_sent = []
+        for sentence in item['modified_sentences']:
+            modified_text_p_sent.append(sentence)
+            successfull_modifications += 1
+        for result in item['modified_results']:
+            modified_result_p_sent.append(result)
+        modified_texts.append(modified_text_p_sent)
+        modified_results.append(modified_result_p_sent)
+
+    return original_texts, original_results, modified_texts, modified_results, successfull_modifications
+
+
+
+  
 
 
 
@@ -144,34 +209,63 @@ def filter_unchanged_predictions(ds):
 # Funcitons for Result Vizualisation
 
 
-def generate_results_df(pmethod, ds, advds, *args):        
-        
+def generate_results_df(original_sentences, modifyable_original_sentences, number_of_modified_sentences, successfull_modifications, pmethod):        
+    try:
+        success_rate = successfull_modifications/number_of_modified_sentences
+    except ZeroDivisionError:
+        success_rate = 0
+    
     results = pd.DataFrame({
      'Perturbation Method': [pmethod],
-     'Tokenizer': ['nlptown/bert-base-multilingual-uncased-sentiment'], 
-     'Model' : ['nlptown/bert-base-multilingual-uncased-sentiment'], 
-     'Dataset':['TripAdvisor Hotel Reviews'], 
-     'Output lables': ['Range from 0 to 4 - 0 = NEG; 4 = POS'],
-     'Sentences in Dataset:': 2694,
-     'Modifyable Sentences in Dataset': len(advds),
-     'Modified Sentences to predict': len(advds),
-     'Successfull Modifications': 'syx',
-     'Percentage': (results/len(ds)*100)})
+     'Tokenizer': ['en_core_web_sm'], 
+     'Model' : ['en-laptops-absa'], 
+     'Dataset':['SemEval 2015 Laptops'], 
+     'Total number of original sentences': len(original_sentences),
+     'Total number of modifyable original sentences': len(modifyable_original_sentences),
+     'Total number of modified sentences': number_of_modified_sentences,
+     'Total number of changed predictions through modification': successfull_modifications,
+     'Success Rate': success_rate})
     
     return results.T
 
-def generate_multipredictions(original_predictions, modified_predictions):
-    extended_original_predictions = []
-    extended_modified_predictions = []
+def generate_multipredictions(original_results, modified_results):
+    extended_original_results = []
+    extended_modified_results = []
 
-    for index, prediction in enumerate(original_predictions):
+    for index, result in enumerate(original_results):
+        for e, item in enumerate(modified_results[index]):            
+            extended_original_results.append(original_results[index])
+            extended_modified_results.append(modified_results[index][e])
 
-        if isinstance(modified_predictions[index], list):
-            for e, item in enumerate(modified_predictions[index]):            
-                extended_original_predictions.append(original_predictions[index])
-                extended_modified_predictions.append(modified_predictions[index][e])
-        else:
-            extended_original_predictions.append(original_predictions[index])
-            extended_modified_predictions.append(modified_predictions[index])
+    return (extended_original_results, extended_modified_results)
 
-    return extended_original_predictions, extended_modified_predictions
+
+def generate_aspsent_map_dict(results_dict):
+
+    # check, which aspects and sentiments are in the data
+
+    aspects = []
+    sentiments = []
+    aspects_sentiments = []
+    aspects_sentiments_map = []
+    i = -1
+
+    for item in loo_results:
+        #print()
+        for result in item['original_result']:
+            if result['aspect'] not in aspects:
+                aspects.append(result['aspect'])
+            if result['sentiment'] not in sentiments:
+                sentiments.append(result['sentiment'])
+            aspect_sentiment = []
+            aspect_sentiment.append(result['aspect'])
+            aspect_sentiment.append(result['sentiment'])
+            if aspect_sentiment not in aspects_sentiments:
+                aspects_sentiments.append(aspect_sentiment)
+                i += 1
+                #aspects_sentiments_map.append(i)
+
+                aspects_sentiments_map.append(
+                    {i:aspect_sentiment})
+
+    return aspects_sentiments_map
