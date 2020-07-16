@@ -250,7 +250,7 @@ def generate_aspsent_map_dict(results_dict):
     aspects_sentiments_map = []
     i = -1
 
-    for item in loo_results:
+    for item in results_dict:
         #print()
         for result in item['original_result']:
             if result['aspect'] not in aspects:
