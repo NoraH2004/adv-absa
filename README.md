@@ -8,7 +8,7 @@ This is the complementary code used in my Master's Thesis to explore the robustn
 ## Target Models
 
 As the base for the experiments, we used the BERT base model [[2]](#2). In a first step, we pre-trained it on the laptop domain and fine-tuned it on the ABSA task in a second step. We employed the Amazon Laptop Reviews scraped by He et al. to have sufficient training data [[3]](#3) and used the Adam optimizer. We pre-train our model using a batch size of 32 and set the learning rate to 3 * 10^{-5} with random initialization.
-We define a maximum input sequence length of 256 tokens, resulting in four sentences per sequence on average.  Due to the relatively low number of training data, we pre-train BERT base for 30 epochs, such that the model sees about 30 million sentences during training. That way, a single sentence appears multiple times within the two language model tasks. The code for pre-training can be found on [here](https://github.com/deepopinion/domain-adapted-atsc Pre-Training on Laptop Domain).
+We define a maximum input sequence length of 256 tokens, resulting in four sentences per sequence on average.  Due to the relatively low number of training data, we pre-train BERT base for 30 epochs, such that the model sees about 30 million sentences during training. That way, a single sentence appears multiple times within the two language model tasks. The code for pre-training can be found on [here](https://github.com/deepopinion/domain-adapted-atsc "Pre-Training on Laptop Domain").
 
 For fine-tuning the pre-trained BERT model on the ABSA task, we used the Ranger optimizer and set the learning rate to 3 * 10^-5. We used a batch size of 32 and fine-tuned it for 20 epochs and random initialization. 
 
