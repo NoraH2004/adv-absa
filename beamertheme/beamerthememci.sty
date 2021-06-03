@@ -1,0 +1,360 @@
+\ProvidesPackage{beamerthememci}
+\def\fileversion{0.1}
+\def\filename{beamerthememci}
+\def\filedate{2018/09/18}
+%% License: GPL-2 | GPL-3
+%% Copyright: (C) 2018 Matthias Janetschek, Pascal Schöttle
+%% Please report errors to: matthias.janetschek@mci.edu or pascal.schoettle@mci.edu
+
+
+%% define options: foot, noslidenumber, logo, license, licenseall, sectionintroframe,
+%% nototalframenumber, titleoutline, nosectiontitlepage and bigfoot/sasquatch.
+
+\newif\ifbigfoot
+\bigfootfalse
+\DeclareOption{bigfoot}{\bigfoottrue}
+\newif\ifsasquatch
+\sasquatchfalse
+\DeclareOption{sasquatch}{\sasquatchtrue}
+
+%% foot adds a foot line to the frames including conference and date
+\newif\iffooter
+\footerfalse
+\DeclareOption{foot}{
+  \footertrue
+}
+
+%% noslidenumber removes the slide number
+\newif\ifsn
+\sntrue
+\DeclareOption{noslidenumber}{
+  \snfalse
+  \footerfalse
+}
+
+%% logo adds the university logo on the left of the footer line
+\newif\ifframelogo
+\framelogofalse
+\DeclareOption{logo}{
+  \framelogotrue
+}
+
+
+
+%% sectionintroframe adds an empty frame before each new section with the title of the section
+% intended for long talks;
+\newif\ifsectionintroframe
+\sectionintroframefalse
+\DeclareOption{sectionintroframe}{
+  \sectionintroframetrue
+}
+
+%% nototalframenumber suppresses the display of the totalframenumber in the lower right
+%% (e.g., '2' instead of '2/27')
+\newif\ifnototalframenumber
+\nototalframenumberfalse
+\DeclareOption{nototalframenumber}{
+  \nototalframenumbertrue
+}
+
+
+%% nosectiontitlepage switches off the behaviour of inserting the titlepage every time a \section is called
+% this makes it possible to use more than one section + thanks page and a ToC
+% off by default
+\newif\ifnosectiontitlepage
+\nosectiontitlepagefalse
+\DeclareOption{nosectiontitlepage}{
+    \nosectiontitlepagetrue
+}
+
+\DeclareOption{faculty}{#1}
+
+%% url controls whether \url{} or \href{} is used for the URL on the title page
+\newif\iftitleurl
+\titleurlfalse
+\DeclareOption{url}{
+  \titleurltrue
+}
+
+%% default options
+\ExecuteOptions{}
+
+%% to activate the options:
+\ProcessOptions
+
+
+%%%% FONTS %%%%%
+
+\RequirePackage[T1]{fontenc}
+\RequirePackage{times}
+\setbeamerfont{title}{size = \huge, shape = \scshape, series=\bfseries}
+\setbeamerfont{subtitle}{size = \large}
+\setbeamerfont{author}{size = \large, shape = \scshape, series=\bfseries}
+\setbeamerfont{date}{size = \large, series=\bfseries}
+\setbeamerfont{frametitle}{size = \Large, series=\bfseries}
+\setbeamerfont{framesubtitle}{size = \large}
+\setbeamerfont{date in head/foot}{size = \footnotesize}
+\setbeamerfont{conference}{size= \large, shape = \scshape, series=\bfseries}
+
+%%%% COLORS %%%%%
+
+% Requirement
+\RequirePackage{tikz}
+\RequirePackage[most]{tcolorbox}
+\RequirePackage{xcolor}
+
+\definecolor{MciBlue}{RGB}{0, 73, 131}
+\definecolor{MciOrange}{RGB}{244, 155, 0}
+\definecolor{MciBlack}{RGB}{62, 61, 64}
+\definecolor{MciGrey}{RGB}{137, 137, 137}
+
+\setbeamercolor{testing}{fg=black,bg=yellow}
+
+\setbeamercolor*{title}{fg=MciBlue}
+\setbeamercolor*{subtitle}{fg=MciGrey}
+\setbeamercolor*{author}{fg=MciBlue}
+\setbeamercolor*{date}{fg=MciBlue}
+\setbeamercolor*{frametitle}{fg=MciBlue}
+\setbeamercolor*{date in head/foot}{fg=MciGrey}
+\setbeamercolor*{conference}{fg=MciGrey}
+
+\setbeamercolor{block title}{bg=black!10}
+\setbeamercolor{block body}{bg=black!5}
+
+\setbeamercolor{block title alerted}{bg=black!10}
+\setbeamercolor{block body alerted}{fg=black,bg=black!5}
+
+\setbeamercolor{block title example}{bg=black!10}
+\setbeamercolor{block body example}{fg=black,bg=black!5}
+
+
+%%%% INNER THEME %%%%%
+
+\setbeamercolor{itemize item}{fg=MciOrange}
+\setbeamercolor{itemize subitem}{fg=MciOrange}
+\setbeamercolor{itemize subsubitem}{fg=MciOrange}
+%
+%\setbeamercolor{item projected}{bg=MciOrange}
+%\setbeamercolor{subitem projected}{fg=MciOrange}
+%\setbeamercolor{subsubitem projected}{fg=MciOrange}
+%
+\setbeamercolor{item projected}{bg=MciOrange}
+\setbeamercolor{enumerate subitem}{bg=MciOrange}
+%\setbeamercolor{enumerate subitem}{fg=white}
+\setbeamercolor{enumerate subsubitem}{fg=MciOrange}
+
+\setbeamertemplate{items}[circle]
+
+
+\setbeamertemplate{enumerate item}[circle]
+%\setbeamertemplate{enumerate subitem}
+\setbeamertemplate{enumerate subitem}[square]%{\alph{enumii}}
+\setbeamertemplate{enumerate subsubitem}[default]%{\alph{enumii}}
+%\setbeamertemplate{enumerate subsubitem}[circle]{\alph{enumii}}
+
+% Title page
+\defbeamertemplate*{title page}{mci}[1][] {
+    % MCI logo in top right corner
+    \begin{beamercolorbox}[wd=\paperwidth,ht=2cm,leftskip=0.6cm]{frametitle} 
+        \parbox[b][1.5cm][t]{0.85\textwidth} {
+            \ % Parbox needs content, otherwise it will be ignored, therefore let's use a forced space character
+        }
+%% no longer needed, use tikz instead
+%        \parbox[b][1.5cm][b]{0.23\textwidth} {
+%            \includegraphics[width=3.1cm,keepaspectratio=true]{media/mci_log.png}
+%            \vskip0.5cm
+%        }
+    \end{beamercolorbox}
+    
+    % Title and such
+    \begin{minipage}[t][0.6\paperheight][t]{0.84\paperwidth}
+        \vskip1.0cm
+        
+        % Title
+        \begin{beamercolorbox}[wd=0.85\paperwidth,left,#1]{title}
+            \usebeamerfont{title}\inserttitle\par
+        \end{beamercolorbox}
+        
+        \vskip0.5cm
+        
+        % Subtitle
+        \begin{beamercolorbox}[wd=0.85\paperwidth,left,#1]{subtitle}
+            \usebeamerfont{subtitle}\insertsubtitle\par
+        \end{beamercolorbox}
+        
+        \vspace*{\fill}
+        
+        % Author
+        \begin{beamercolorbox}[wd=0.85\paperwidth,left,#1]{author}
+            \usebeamerfont{author}\insertauthor\par
+            \usebeamerfont{author}\insertdate\par
+        \end{beamercolorbox}
+        \iffalse
+        \begin{beamercolorbox}[wd=0.85\paperwidth,left,#1]{author}
+            \makebox[\linewidth]{
+                \usebeamerfont{author}\insertauthor
+                \hspace{\fill}
+                \usebeamerfont{author}\insertdate
+            }
+        \end{beamercolorbox}
+
+        % Conference
+        %\begin{beamercolorbox}[wd=0.85\paperwidth,left,#1]{conference}
+        %  \usebeamerfont{conference\insertsubtitle\par
+        %\end{beamercolorbox}
+
+        \fi
+    \end{minipage}
+    \addtocounter{framenumber}{-1}
+}
+
+
+%%%% OUTER THEME %%%%%
+
+% Frame title
+\defbeamertemplate*{frametitle}{mci}[1][] {
+    \vskip-0.3cm % To get rid of the small white border on top
+    \begin{beamercolorbox}[wd=\paperwidth,ht=2cm,leftskip=0.7cm]{frametitle} 
+        \parbox[b][1.2cm][t]{0.8\textwidth} {
+            \usebeamerfont{frametitle}\insertframetitle\par%}
+            \vskip1mm
+            \ifx\insertframesubtitle\@empty%
+            \else%
+            {\usebeamerfont{framesubtitle}\insertframesubtitle\par}
+        	%
+        	\fi}
+    \end{beamercolorbox}
+}
+
+% MCI logo
+\newcommand{\headerimage}{%
+	\begin{tikzpicture}[overlay, remember picture]
+	\node at ($(current page.north east)+(-2.25,-1.1)$){
+	%\parbox[b][1.5cm][b]{0.23\textwidth} {
+		\includegraphics[width=3.1cm,keepaspectratio=true]{media/mci_logo.png}
+	%	\vskip0.5cm
+	%}
+};
+	\end{tikzpicture}
+}
+%% We have to include the tikz command to the headline!
+\setbeamertemplate{headline}{\headerimage}
+
+% Footline
+\defbeamertemplate*{footline}{mci} {
+        \begin{beamercolorbox}[wd=\paperwidth,ht=0.8cm]{date in head/foot}
+            \ifnum\thepage>1
+                \makebox[\linewidth]{
+                    \hspace{\fill}
+                    \ifsn
+                    	\usebeamerfont{date in head/foot}\insertframenumber{}\hspace*{0.8cm}
+                    \else
+                    	\usebeamerfont{date in head/foot}\hspace*{0.8cm}
+                    \fi
+                }
+                \vspace*{0.1cm}
+            \fi
+        \end{beamercolorbox}
+}
+
+%% navigation symbols
+\setbeamertemplate{navigation symbols}{}
+
+\setbeamertemplate{blocks}[rounded][shadow=true]
+
+%\beamertemplatesolidbackgroundcolor{black!5}
+
+%%%% FRAME OPTION 'transp'
+%%%% using '\begin{frame}[transp]' enables transparency of uncovered elements
+
+\BeforeBeginEnvironment{frame}{%
+   \setbeamercovered{}%
+}
+
+\makeatletter
+\define@key{beamerframe}{transp}[true]{%
+  \setbeamercovered{transparent=15}%
+}
+\makeatother
+
+\definecolor{verylightgray}{RGB}{242,242,242}
+
+% tcolorbox definitions
+\newtcolorbox{inlinecolorbox}{box align=center, colback=verylightgray, colframe=lightgray, boxrule=0pt, enhanced, drop fuzzy shadow=black!90!bg}
+
+%hyperref settings
+% etoolbox is required because beamer usually sets those options itsself,
+% but we want to override them; (default beamer has full title and subtitle
+% as pdftitle)
+% this is also the reason why we need 'usepdftitle=false' in the documentclass options,
+% it disables beamer's pdfinfo settings
+\RequirePackage{etoolbox}
+\makeatletter
+\AtEndPreamble{
+  \hypersetup{
+    colorlinks = false,
+    pdfauthor = {\beamer@shortauthor},
+    pdfsubject = {{\inserttitle} - {\insertsubtitle}},
+    pdftitle = {\beamer@shorttitle},
+    bookmarksopen=false,
+    pdfstartview=Fit
+  }
+}
+\makeatother
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% ------------------------------------------------------------------------
+% superset of packages
+% ------------------------------------------------------------------------
+
+\RequirePackage{pgfplots}
+\RequirePackage{tikz}
+\RequirePackage{bm}
+\RequirePackage{booktabs}
+\RequirePackage{import}
+\RequirePackage{eurosym}
+\RequirePackage[ngerman]{babel}
+\RequirePackage{listings}
+\RequirePackage{nicefrac}
+\RequirePackage{mathtools}
+\RequirePackage{algorithmic}
+\RequirePackage[utf8]{inputenc} % compile with UTF8 encoding
+\RequirePackage[normalem]{ulem}
+\RequirePackage{readarray}
+
+\usetikzlibrary{calendar}
+\usetikzlibrary{shadows}
+\usetikzlibrary{trees}
+\usetikzlibrary{shapes}
+\usetikzlibrary{shapes.callouts}
+\usetikzlibrary{shapes.symbols}
+\usetikzlibrary{shapes.gates.logic.US}
+\usetikzlibrary{decorations.text}
+\usetikzlibrary{decorations.pathreplacing}
+\usetikzlibrary{decorations.pathmorphing}
+\usetikzlibrary{calc}
+\usetikzlibrary{fit}
+\usetikzlibrary{patterns}
+\usetikzlibrary{positioning}
+
+% ------------------------------------------------------------------------
+% PGF Layers (for plot order)
+% ------------------------------------------------------------------------
+
+\pgfdeclarelayer{background} 
+\pgfdeclarelayer{foreground} 
+\pgfsetlayers{background,main,foreground}
+
+% ------------------------------------------------------------------------
+% Macros
+% ------------------------------------------------------------------------
+
+
+\newcommand{\quelle}[1]{{\tiny{\color{MciBlue!50}{\,#1}}}}
+\newcommand{\Aq}{\vphantom{Aq}}
+\newcommand{\tikzmark}[1]{\tikz[overlay,remember picture] \node [above,inner sep=0] (#1) {\vphantom{A}};}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

@@ -1,0 +1,14 @@
+This is a portable version of TikZiT 2.1. To launch TikZiT, simply run
+'bin/tikzit'. To install launcher and icons for the current user, make
+sure the 'bin' sub-directory is in your $PATH and run:
+
+# ./install-local.sh
+
+inside the tikzit directory.
+
+
+TikZiT is released under the GNU General Public License, Version 3. See:
+
+http://tikzit.github.io
+
+for full details and source code.

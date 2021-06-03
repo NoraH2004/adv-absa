@@ -1,0 +1,552 @@
+% !TEX encoding = UTF-8 Unicode
+\documentclass[aspectratio=1610,table,xcolor=dvipsnames]{beamer}
+
+
+% Beamer Theme
+\usetheme[]{mci} 
+
+
+% Packages
+\usepackage[utf8]{inputenc}
+\usepackage{times}
+\usepackage{multirow}
+\usepackage{stmaryrd}
+\usepackage{tikzsymbols}
+
+
+%\overfullrule=5pt
+\pgfplotsset{compat=1.15}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Titlepage Information
+\title{Adversarial Examples Against a BERT ABSA Model}
+\subtitle{Fooling Bert With L33T, Misspellign, and Punctuation,}
+
+\author{N. Hofer, P. Schöttle, A. Rietzler, S. Stabinger} 
+\date{August, 2021}
+%\conference{16th International Conference on Availability, Reliability and Security (ARES 2021)}
+
+
+%%%%%%%%%%%%%%%%%%%
+%% Begin Document%%
+%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+
+% Titlepage
+\begin{frame}
+	\titlepage
+\end{frame}
+
+
+
+%BERT
+\begin{frame}
+	\frametitle{Motivation}
+	\framesubtitle{Adversarial Examples Against a \textbf{BERT} ABSA Model}
+	Bidirectional Encoder Representations from Transformers - BERT
+	\begin{figure}[H]
+		\includegraphics[ width = .3\textwidth]{media/transformer.png}
+		\caption{Transformer Model Architecture (Vaswani et al., 2017)}
+	\end{figure}
+	\begin{figure}[H]
+		\includegraphics[ width = .3\textwidth]{media/bert-head_orig.jpeg}
+	\end{figure}
+
+\end{frame}
+
+%Adv Ex
+\begin{frame}
+	\frametitle{Motivation}
+	\framesubtitle{\textbf{Adversarial Examples} Against a BERT ABSA Model}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[ width = .8\textwidth]{media/panda.png}
+		\caption{Adversarial Examples in Computer Vision (Goodfellow et al, ICLR 2015)}
+		%\caption{Source: Explaining and Harnessing Adversarial Examples, Goodfellow et al, ICLR 2015.}
+	\end{figure}
+
+\end{frame}
+
+%Autonomous Driving
+\begin{frame}
+	\frametitle{Motivation}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[ width = .625\textwidth]{media/car.png}
+		\caption{Object detection in autonomous driving (Source: becominghuman.ai)}
+		%\caption{Source: Explaining and Harnessing Adversarial Examples, Goodfellow et al, ICLR 2015.}
+	\end{figure}
+
+\end{frame}
+
+%Tweet 
+\begin{frame}
+	\frametitle{Motivation}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[ width = .625\textwidth]{media/tweet1.png}
+		\caption{Tweet containing misleading information regarding Covid-19, detected and labeled correctly}
+		%\caption{Source: Explaining and Harnessing Adversarial Examples, Goodfellow et al, ICLR 2015.}
+	\end{figure}
+
+\end{frame}
+
+\begin{frame}
+	\frametitle{Motivation}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[ width = .625\textwidth]{media/tweet2.png}
+		\caption{Tweet containing misleading information regarding Covid-19, detected and labeled correctly}
+		%\caption{Source: Explaining and Harnessing Adversarial Examples, Goodfellow et al, ICLR 2015.}
+	\end{figure}
+
+\end{frame}
+
+\begin{frame}
+	\frametitle{Motivation}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[ width = .625\textwidth]{media/tweet3.png}
+		\caption{Tweet containing misleading information regarding Covid-19. Potential problems due to the use of Leet Speak.}
+		%\caption{Source: Explaining and Harnessing Adversarial Examples, Goodfellow et al, ICLR 2015.}
+	\end{figure}
+
+\end{frame}
+
+
+%Adversarial Attacks Motivation Conclusion - Statement Papernot
+\begin{frame}
+	\frametitle{Adversarial Attacks}
+	\centering\textit{“We’re starting to deploy machine learning as a technology that can fail so we need to have some checks in place.”}
+	\centering\textit{Nicolas Papernot, 2017}
+
+\end{frame}
+
+\begin{frame}
+	\frametitle{Adversarial Attacks against BERT for ABSA}
+
+
+
+	\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+
+	\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+		%uncomment if require: \path (0,300); %set diagram left start at 0, and has height of 300
+
+		%Shape: Rectangle [id:dp4186948644344487] 
+		\draw  [fill={rgb, 255:red, 224; green, 224; blue, 224 }  ,fill opacity=1 ][line width=0.75]  (161,21) -- (522.17,21) -- (522.17,49) -- (161,49) -- cycle ;
+
+		% Text Node
+		\draw (220,24) node [anchor=north west][inner sep=0.75pt]   [align=left] {1. Fine-Tunint BERT base for ABSA};
+
+
+	\end{tikzpicture}
+
+\end{frame}
+
+
+\begin{frame}
+	\frametitle{Adversarial Attacks}
+
+	\begin{block}{bsp block}
+		bla bla blagfdsfds\\
+		bla bla
+	\end{block}
+
+
+\end{frame}
+% Rectangle 1
+
+\begin{frame}[plain]
+	\frametitle{Adversarial Attacks against BERT for ABSA}
+
+	\tikzset{every picture/.style={line width=0.75pt}}
+
+	\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+
+		%Rectangle 1
+		\draw  [fill={rgb, 255:red, 224; green, 224; blue, 224 }  ,fill opacity=1 ][line width=0.75]  (94.75,13.45) -- (599.75,13.45) -- (599.75,49.73) -- (94.75,49.73) -- cycle ;
+		\draw (228.63,23.59) node [anchor=north west][inner sep=0.75pt]   [align=left] {1. Fine-Tuning BERT base for ABSA};
+
+
+	\end{tikzpicture}
+
+\end{frame}
+
+\begin{frame}[plain]
+	\frametitle{Adversarial Attacks against BERT for ABSA}
+
+	\tikzset{every picture/.style={line width=0.75pt}}
+
+	\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+
+		%Rectangle 1
+		\draw  [fill={rgb, 255:red, 224; green, 224; blue, 224 }  ,fill opacity=1 ][line width=0.75]  (94.75,13.45) -- (599.75,13.45) -- (599.75,49.73) -- (94.75,49.73) -- cycle ;
+		\draw (228.63,23.59) node [anchor=north west][inner sep=0.75pt]   [align=left] {1. Fine-Tuning BERT base for ABSA};
+
+
+	\end{tikzpicture}
+	\centering{Aspect-based Sentiment Analysis}
+
+\end{frame}
+
+
+\begin{frame}[plain]
+	\frametitle{Adversarial Attacks against BERT for ABSA}
+
+	\tikzset{every picture/.style={line width=0.75pt}}
+
+	\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+
+		%Rectangle 1
+		\draw  [fill={rgb, 255:red, 224; green, 224; blue, 224 }  ,fill opacity=1 ][line width=0.75]  (94.75,13.45) -- (599.75,13.45) -- (599.75,49.73) -- (94.75,49.73) -- cycle ;
+		\draw (228.63,23.59) node [anchor=north west][inner sep=0.75pt]   [align=left] {1. Fine-Tuning BERT base for ABSA};
+
+
+	\end{tikzpicture}
+	\centering{Aspect-based Sentiment Analysis}
+
+	\centering{\textit{The computer is excellent for gaming but I think it is way too expensive!!}}
+
+\end{frame}
+
+\begin{frame}[plain]
+	\frametitle{Adversarial Attacks against BERT for ABSA}
+
+	\tikzset{every picture/.style={line width=0.75pt}}
+
+	\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+
+		%Rectangle 1
+		\draw  [fill={rgb, 255:red, 224; green, 224; blue, 224 }  ,fill opacity=1 ][line width=0.75]  (94.75,13.45) -- (599.75,13.45) -- (599.75,49.73) -- (94.75,49.73) -- cycle ;
+		\draw (228.63,23.59) node [anchor=north west][inner sep=0.75pt]   [align=left] {1. Fine-Tuning BERT base for ABSA};
+
+
+	\end{tikzpicture}
+	\centering{Aspect-based Sentiment Analysis}
+
+	\centering{\textit{The computer is \colorbox{YellowGreen}{excellent for gaming} but I think it is \colorbox{Salmon}{way too expensive}!!}}
+
+	\centering{ Aspect: Gaming, Sentiment: POS\\}
+	\centering{ Aspect: Price, Sentiment: NEG}
+
+\end{frame}
+
+
+%Rectangle 2
+
+\begin{frame}[plain]
+
+	\frametitle{Adversarial Attacks against BERT for ABSA}
+
+	\tikzset{every picture/.style={line width=0.75pt}}
+
+	\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+
+		%Rectangle 1
+		\draw  [fill={rgb, 255:red, 224; green, 224; blue, 224 }  ,fill opacity=1 ][line width=0.75]  (94.75,13.45) -- (599.75,13.45) -- (599.75,49.73) -- (94.75,49.73) -- cycle ;
+		\draw (228.63,23.59) node [anchor=north west][inner sep=0.75pt]   [align=left] {1. Fine-Tuning BERT base for ABSA};
+
+		%Down Arrow 1
+		\draw  [fill={rgb, 255:red, 224; green, 224; blue, 224 }  ,fill opacity=1 ] (319.87,74.92) -- (339.7,74.92) -- (339.7,61.39) -- (354.21,61.39) -- (354.21,74.92) -- (374.05,74.92) -- (346.96,93.06) -- cycle ;
+
+		%Rectangle 2
+		\draw  [fill={rgb, 255:red, 224; green, 224; blue, 224 }  ,fill opacity=1 ][line width=0.75]  (94.75,102.84) -- (599.75,102.84) -- (599.75,139.12) -- (94.75,139.12) -- cycle ;
+		\draw (259.24,112.98) node [anchor=north west][inner sep=0.75pt]   [align=left] {2. Identify Important Word};
+
+
+
+	\end{tikzpicture}
+
+\end{frame}
+
+\begin{frame}[plain]
+
+	\frametitle{Adversarial Attacks against BERT for ABSA}
+
+	\tikzset{every picture/.style={line width=0.75pt}}
+
+	\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+
+		%Rectangle 1
+		\draw  [fill={rgb, 255:red, 224; green, 224; blue, 224 }  ,fill opacity=1 ][line width=0.75]  (94.75,13.45) -- (599.75,13.45) -- (599.75,49.73) -- (94.75,49.73) -- cycle ;
+		\draw (228.63,23.59) node [anchor=north west][inner sep=0.75pt]   [align=left] {1. Fine-Tuning BERT base for ABSA};
+
+		%Down Arrow 1
+		\draw  [fill={rgb, 255:red, 224; green, 224; blue, 224 }  ,fill opacity=1 ] (319.87,74.92) -- (339.7,74.92) -- (339.7,61.39) -- (354.21,61.39) -- (354.21,74.92) -- (374.05,74.92) -- (346.96,93.06) -- cycle ;
+
+		%Rectangle 2
+		\draw  [fill={rgb, 255:red, 224; green, 224; blue, 224 }  ,fill opacity=1 ][line width=0.75]  (94.75,102.84) -- (599.75,102.84) -- (599.75,139.12) -- (94.75,139.12) -- cycle ;
+		\draw (259.24,112.98) node [anchor=north west][inner sep=0.75pt]   [align=left] {2. Identify Important Word};
+
+		\centering{Leave-One-Out Method}
+
+	\end{tikzpicture}
+
+\end{frame}
+
+\begin{frame}[plain]
+
+	\frametitle{Adversarial Attacks against BERT for ABSA}
+
+	\tikzset{every picture/.style={line width=0.75pt}}
+
+	\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+
+		%Rectangle 1
+		\draw  [fill={rgb, 255:red, 224; green, 224; blue, 224 }  ,fill opacity=1 ][line width=0.75]  (94.75,13.45) -- (599.75,13.45) -- (599.75,49.73) -- (94.75,49.73) -- cycle ;
+		\draw (228.63,23.59) node [anchor=north west][inner sep=0.75pt]   [align=left] {1. Fine-Tuning BERT base for ABSA};
+
+		%Down Arrow 1
+		\draw  [fill={rgb, 255:red, 224; green, 224; blue, 224 }  ,fill opacity=1 ] (319.87,74.92) -- (339.7,74.92) -- (339.7,61.39) -- (354.21,61.39) -- (354.21,74.92) -- (374.05,74.92) -- (346.96,93.06) -- cycle ;
+
+		%Rectangle 2
+		\draw  [fill={rgb, 255:red, 224; green, 224; blue, 224 }  ,fill opacity=1 ][line width=0.75]  (94.75,102.84) -- (599.75,102.84) -- (599.75,139.12) -- (94.75,139.12) -- cycle ;
+		\draw (259.24,112.98) node [anchor=north west][inner sep=0.75pt]   [align=left] {2. Identify Important Word};
+
+		\centering{Leave-One-Out Method}
+		\centering{\textbf{\textit{The computer is \colorbox{YellowGreen}{excellent for gaming} but I think it is \colorbox{Salmon}{way too expensive!!}}} Gaming - POS; Price - NEG}
+
+		\centering{
+			\textit{
+				\textbf{The}
+				- computer is \colorbox{YellowGreen}{excellent for gaming}
+				but I think it is \colorbox{Salmon}{way too expensive!!}
+			}
+			Gaming - POS; Price - NEG}
+		\centering{\textit{\textbf{computer} - The is \colorbox{YellowGreen}{excellent for gaming} but I think it is \colorbox{Salmon}{way too expensive!!}} Gaming - POS; Price - NEG}
+		\centering{\textit{\textbf{is} - The computer \colorbox{YellowGreen}{excellent for gaming} but I think it is \colorbox{Salmon}{way too expensive!!}} Gaming - POS; Price - NEG}
+		\centering{\textit{\textbf{excellent} - The computer is for gaming but I think it is \colorbox{Salmon}{way too expensive!!}} Price - NEG}
+		\centering{\textit{\textbf{for} - The computer is \colorbox{YellowGreen}{excellent gaming} but I think it is \colorbox{Salmon}{way too expensive!!}} Gaming - POS; Price - NEG}
+		\centering{ ... }
+	\end{tikzpicture}
+
+\end{frame}
+
+%Rectangle 3
+\begin{frame}[plain]
+	\frametitle{Adversarial Attacks against BERT for ABSA}
+
+	\tikzset{every picture/.style={line width=0.75pt}}
+
+	\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+
+		%Rectangle 1
+		\draw  [fill={rgb, 255:red, 224; green, 224; blue, 224 }  ,fill opacity=1 ][line width=0.75]  (94.75,13.45) -- (599.75,13.45) -- (599.75,49.73) -- (94.75,49.73) -- cycle ;
+		\draw (228.63,23.59) node [anchor=north west][inner sep=0.75pt]   [align=left] {1. Fine-Tuning BERT base for ABSA};
+
+		%Down Arrow 1
+		\draw  [fill={rgb, 255:red, 224; green, 224; blue, 224 }  ,fill opacity=1 ] (319.87,74.92) -- (339.7,74.92) -- (339.7,61.39) -- (354.21,61.39) -- (354.21,74.92) -- (374.05,74.92) -- (346.96,93.06) -- cycle ;
+
+		%Rectangle 2
+		\draw  [fill={rgb, 255:red, 224; green, 224; blue, 224 }  ,fill opacity=1 ][line width=0.75]  (94.75,102.84) -- (599.75,102.84) -- (599.75,139.12) -- (94.75,139.12) -- cycle ;
+		\draw (259.24,112.98) node [anchor=north west][inner sep=0.75pt]   [align=left] {2. Identify Important Word};
+
+		%Down Arrow 2
+		\draw  [fill={rgb, 255:red, 224; green, 224; blue, 224 }  ,fill opacity=1 ] (321.27,164.32) -- (341.1,164.32) -- (341.1,150.78) -- (355.61,150.78) -- (355.61,164.32) -- (375.45,164.32) -- (348.36,182.46) -- cycle ;
+
+		%Rectangle 3
+		\draw  [fill={rgb, 255:red, 224; green, 224; blue, 224 }  ,fill opacity=1 ][line width=0.75]  (94.75,194.83) -- (599.75,194.83) -- (599.75,231.11) -- (94.75,231.11) -- cycle ;
+		\draw (234.03,204.97) node [anchor=north west][inner sep=0.75pt]   [align=left] {3. Modification of Important Words};
+
+
+
+	\end{tikzpicture}
+
+\end{frame}
+
+\begin{frame}[plain]
+	\frametitle{Adversarial Attacks against BERT for ABSA}
+
+	\tikzset{every picture/.style={line width=0.75pt}}
+
+	\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+
+		%Rectangle 1
+		\draw  [fill={rgb, 255:red, 224; green, 224; blue, 224 }  ,fill opacity=1 ][line width=0.75]  (94.75,13.45) -- (599.75,13.45) -- (599.75,49.73) -- (94.75,49.73) -- cycle ;
+		\draw (228.63,23.59) node [anchor=north west][inner sep=0.75pt]   [align=left] {1. Fine-Tuning BERT base for ABSA};
+
+		%Down Arrow 1
+		\draw  [fill={rgb, 255:red, 224; green, 224; blue, 224 }  ,fill opacity=1 ] (319.87,74.92) -- (339.7,74.92) -- (339.7,61.39) -- (354.21,61.39) -- (354.21,74.92) -- (374.05,74.92) -- (346.96,93.06) -- cycle ;
+
+		%Rectangle 2
+		\draw  [fill={rgb, 255:red, 224; green, 224; blue, 224 }  ,fill opacity=1 ][line width=0.75]  (94.75,102.84) -- (599.75,102.84) -- (599.75,139.12) -- (94.75,139.12) -- cycle ;
+		\draw (259.24,112.98) node [anchor=north west][inner sep=0.75pt]   [align=left] {2. Identify Important Word};
+
+		%Down Arrow 2
+		\draw  [fill={rgb, 255:red, 224; green, 224; blue, 224 }  ,fill opacity=1 ] (321.27,164.32) -- (341.1,164.32) -- (341.1,150.78) -- (355.61,150.78) -- (355.61,164.32) -- (375.45,164.32) -- (348.36,182.46) -- cycle ;
+
+		%Rectangle 3
+		\draw  [fill={rgb, 255:red, 224; green, 224; blue, 224 }  ,fill opacity=1 ][line width=0.75]  (94.75,194.83) -- (599.75,194.83) -- (599.75,231.11) -- (94.75,231.11) -- cycle ;
+		\draw (234.03,204.97) node [anchor=north west][inner sep=0.75pt]   [align=left] {3. Modification of Important Words};
+
+		%Rectangle Leet 
+		\draw  [fill={rgb, 255:red, 224; green, 224; blue, 224 }  ,fill opacity=1 ][line width=0.75]  (94.75,240.17) -- (258.34,240.17) -- (258.34,276.45) -- (94.75,276.45) -- cycle ;
+		\draw (140.85,250.31) node [anchor=north west][inner sep=0.75pt]   [align=left] {Leetspeak};
+
+		%Rectangle Misspellings
+		\draw  [fill={rgb, 255:red, 224; green, 224; blue, 224 }  ,fill opacity=1 ][line width=0.75]  (265.34,240.17) -- (428.93,240.17) -- (428.93,276.45) -- (265.34,276.45) -- cycle ;
+		\draw (305.63,249.02) node [anchor=north west][inner sep=0.75pt]   [align=left] {Misspellings};
+
+		%Rectangle Punct
+		\draw  [fill={rgb, 255:red, 224; green, 224; blue, 224 }  ,fill opacity=1 ][line width=0.75]  (435.92,240.17) -- (599.52,240.17) -- (599.52,276.45) -- (435.92,276.45) -- cycle ;
+		\draw (478.42,250.15) node [anchor=north west][inner sep=0.75pt]   [align=left] {Punctuation};
+
+	\end{tikzpicture}
+
+\end{frame}
+
+
+% Objectives
+
+\begin{frame}
+	\frametitle{Objectives}
+
+	\begin{itemize}
+		\item Semantic Meaning
+		\item Inconspicousness
+		\item Relevance
+
+	\end{itemize}
+
+	\vfill
+
+
+
+\end{frame}
+
+
+% Leet
+\begin{frame}[plain]
+	\frametitle{Adversarial Attacks against BERT for ABSA}
+
+	\tikzset{every picture/.style={line width=0.75pt}}
+
+	\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+
+		%Rectangle 1
+		\draw  [fill={rgb, 255:red, 224; green, 224; blue, 224 }  ,fill opacity=1 ][line width=0.75]  (94.75,13.45) -- (599.75,13.45) -- (599.75,49.73) -- (94.75,49.73) -- cycle ;
+		\draw (228.63,23.59) node [anchor=north west][inner sep=0.75pt]   [align=left] {1. Leetspeak};
+
+		\centering{
+			\textit{
+				The computer is \colorbox{YellowGreen}{excellent for gaming}
+				but I think it is \colorbox{Salmon}{way too expensive!!}
+			}}
+
+		\centering{Aspect: Gaming, Sentiment: POS}
+		\centering{Aspect: Price, Sentiment: NEG}
+
+		\centering{\textit{Original important word: \textbf{excellent}}}
+		\centering{\textit{Modified important word: \textbf{\color{red}{exce11ent}}}}
+
+		\centering{
+			\textit{
+				The computer is \colorbox{Salmon}{\color{red}{exce11ent} for gaming}
+				but I think it is \colorbox{Salmon}{way too expensive!!}
+			}}
+		\centering{Aspect: Gaming, \color{red}{Sentiment: NEG}}
+		\centering{Aspect: Price, Sentiment: NEG}
+
+
+	\end{tikzpicture}
+
+\end{frame}
+
+% Misspellings
+\begin{frame}[plain]
+	\frametitle{Adversarial Attacks against BERT for ABSA}
+
+	\tikzset{every picture/.style={line width=0.75pt}}
+
+	\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+
+		%Rectangle 1
+		\draw  [fill={rgb, 255:red, 224; green, 224; blue, 224 }  ,fill opacity=1 ][line width=0.75]  (94.75,13.45) -- (599.75,13.45) -- (599.75,49.73) -- (94.75,49.73) -- cycle ;
+		\draw (228.63,23.59) node [anchor=north west][inner sep=0.75pt]   [align=left] {2. Misspellings};
+
+		\centering{
+			\textit{
+				The computer is \colorbox{YellowGreen}{excellent for gaming}
+				but I think it is \colorbox{Salmon}{way too expensive!!}
+			}}
+
+		\centering{Aspect: Gaming, Sentiment: POS}
+		\centering{Aspect: Price, Sentiment: NEG}
+
+		\centering{\textit{Original important word: \textbf{excellent}}}
+		\centering{\textit{Modified important word: \textbf{\color{red}{ecxellent}}}}
+
+		\centering{
+			\textit{
+				The computer is \color{red}{ecxellent} for gaming
+				but I think it is \colorbox{Salmon}{way too expensive!!}
+			}}
+		\centering{Aspect: Price, Sentiment: NEG}
+
+
+	\end{tikzpicture}
+
+\end{frame}
+
+% Punctuation
+\begin{frame}[plain]
+	\frametitle{Adversarial Attacks against BERT for ABSA}
+
+	\tikzset{every picture/.style={line width=0.75pt}}
+
+	\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+
+		%Rectangle 1
+		\draw  [fill={rgb, 255:red, 224; green, 224; blue, 224 }  ,fill opacity=1 ][line width=0.75]  (94.75,13.45) -- (599.75,13.45) -- (599.75,49.73) -- (94.75,49.73) -- cycle ;
+		\draw (228.63,23.59) node [anchor=north west][inner sep=0.75pt]   [align=left] {3. PUnctuation};
+
+		\centering{
+			\textit{
+				The computer is \colorbox{YellowGreen}{excellent for gaming}
+				but I think it is \colorbox{Salmon}{way too expensive!!}
+			}}
+
+		\centering{Aspect: Gaming, Sentiment: POS}
+		\centering{Aspect: Price, Sentiment: NEG}
+
+		\centering{\textit{Original important word: \textbf{excellent}}}
+		\centering{\textit{Modified important word: \textbf{\color{red}{excellent,}}}}
+
+		\centering{
+			\textit{
+				The \colorbox{YellowGreen}{computer is \color{red}{excellent,}}\colorbox{Salmon}{ for gaming
+					but I think} it is \colorbox{Salmon}{way too expensive!!}
+			}}
+
+		\centering{\color{red}{Aspect: Laptop (general), Sentiment: NEG}}
+		\centering{Aspect: Gaming, \color{red}{Sentiment: NEG}}
+		\centering{Aspect: Price, Sentiment: NEG}
+
+
+	\end{tikzpicture}
+
+\end{frame}
+
+% Results
+\begin{frame}
+	\frametitle{Qualitative Results}
+
+	tba
+\end{frame}
+
+% Conclusion
+\begin{frame}
+	\frametitle{Conclusion}
+
+	\centering{\textit{Our reliance on deep learning based language models for real-world (security-relevant) applications is questionable.
+		}}
+\end{frame}
+
+% Titlepage - FIN
+\begin{frame}
+	\titlepage
+\end{frame}
+
+\end{document}
