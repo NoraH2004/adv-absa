@@ -3,9 +3,13 @@
 ## Adversarial Examples Against a BERT ABSA Model –
 ## Fooling Bert With L33T, Misspellign, and Punctuation,
 -------------
+This is the script for my video presentation of the ARES paper.
+The texts in blockquotes are not in the script. I just did not want to delete them for good yet. (Just in case).
 
+Currently I have 990 words excluding the results.
+According to http://www.speechinminutes.com/ this leaves me 310 words for the results and other things that have to be added.
 
-
+-------------
 ## Titlepage
 
 Hello and welcome everyone! My name is Nora Hofer.  In the last year, I reasearched the robustness of a BERT Model for the ABSA task against adversarial attacks.
@@ -181,5 +185,11 @@ This paper is inteded to raise awareness about the potential vulnerability of th
 Testing our generated adversarial datasets on other language models as a next step would provide information about the “transferability” of our attacks. Additionally, established countermeasures, such as adversarial training [18] should be further investigated for their effectiveness in
 the text domain. Our result dataset can be used in the process in order to increase the robustness against such attacks. 
 
+-------------
+### FIN
 
 Finally, we want to mention that we choose the title as it is intentionally, including the misspelling of “misspelling” and the comma at the very end, to highlight leetspeak, misspellings, and additional punctuation, the basis for our proposed attacks.
+
+Please find more information and the code for our experiments, as well as the generated dataset in our github. 
+
+Thanks.
