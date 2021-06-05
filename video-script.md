@@ -20,7 +20,7 @@ But what does all of that mean?
 -------------
 ### BERT 
 
-Let’s start with BERT. BERT is a transformer-based language model introduced in 2018 by Gooogle Researches. Since then it is the SOTA transformer model applied in Natural Language Processing tasks. 
+Let’s start with BERT. BERT is a transformer-based language model introduced in 2018 by Google researchers. Since then it is the state-of-the-art transformer model applied in Natural Language Processing tasks. 
 
 One of these tasks is called ABSA, which is an abbreviation for Aspect Based Sentiment Analysis. A fine-grained Sentiment Analysis that extracts both, the aspect mentioned in a sentence and the sentiment associated with these aspects. 
 
@@ -57,7 +57,7 @@ There are tons of real-world scenarios where deep learning can and will be used.
 
 Our research investigates three attacks on the widely used BERT model for a classification task that could easily happen in a real-world setting. 
 
-Since textual data is discrete, we could not use gradient-based methods as applied in CV to generate adversarial examples but had to use a different approach. 
+Since textual data is discrete, we could not use gradient-based methods as applied in computer vision to generate adversarial examples but had to use a different approach. 
 
 Let's get into it.
 -------------
@@ -70,7 +70,7 @@ An aspect category is defined as a combination of an entity and an attribute des
 -------------
 ### Method Step 1 – ABSA – example sentence
 Let’s see ABSA in action, using an example from the dataset:
-The computer is excellent for gaming but I think it is way too expensive!!
+*The computer is excellent for gaming but I think it is way too expensive!!*
 
 -------------
 ### Method Step 1 – ABSA – Example classified
@@ -88,7 +88,7 @@ To do so we used a method called Leave-One-Out Method.
 ### Method Step 2 – Sentece Words dropped & classified
 
 We took each sentence and dropped one word after the other. After that, each incomplete sentence is predicted and the words, which changed the prediction through their absence, are stored separately. 
-In the example of our sentence - The important word is excellent.
+In the example of our sentence - The important word is *excellent*.
 
 
 
@@ -143,7 +143,7 @@ The last one is the punctuation method. It is also the simplest one, where we wa
 Here the classifier falsely detects a negative sentiment about the Laptop in general. 
 
 -------------
-### results 
+### Results 
 Let's look at the results for the whole dataset. 
 
 The efficiency of our attacks is measured using a distinct and an overall success rate. 
