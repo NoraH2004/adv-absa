@@ -51,7 +51,7 @@ Here you can see a Tweet containing misleading information about a cure for a Co
 
 -------------
 ##### Tweet (modified, unmarked)
-Through small modifications, in this case, using leet speak in the word Covid, and replacing the letter o with the number 0, an attacker can theoretically circumvent the detector, and recipients of the fake news would probably hardly notice afterward that the sentence was deliberately manipulated.
+Through small modifications, in this case, using leet speak in the word Covid, and replacing the letter o with the number 0, an attacker can theoretically circumvent the detector, and recipients of the fake news would probably hardly notice afterwards that the sentence was deliberately manipulated.
 
 There are tons of real-world scenarios where deep learning can and will be used. But when we apply it to security-critical areas, we need to know about their vulnerabilities and hence, security in terms of robustness against manipulations.
 

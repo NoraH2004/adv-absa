@@ -12,6 +12,22 @@
 \usepackage{multirow}
 \usepackage{stmaryrd}
 \usepackage{tikzsymbols}
+\usepackage{subcaption}
+
+
+
+
+\newenvironment<>{varblock}[2][.9\textwidth]{%
+\setlength{\textwidth}{#1}
+\begin{actionenv}#3%
+	\setbeamerfont{varblock body}{size=\tiny}
+    \def\insertblocktitle{#2}%
+    \par%
+    \usebeamertemplate{block begin}}
+  {\par%
+    \usebeamertemplate{block end}%
+  \end{actionenv}}
+
 
 
 %\overfullrule=5pt
@@ -48,13 +64,25 @@
 	\frametitle{Motivation}
 	\framesubtitle{Adversarial Examples Against a \textbf{BERT} ABSA Model}
 	Bidirectional Encoder Representations from Transformers - BERT
+	% \begin{figure}
+	% 	\centering
+	% 	\begin{subfigure}{.8\textwidth}
+	% 		\centering
+	% 		\includegraphics[ width = .3\textwidth]{media/transformer.png}
+	% 		\caption{Transformer Model Architecture (Vaswani et al., 2017)}
+	% 	\end{subfigure}%
+	% 	\begin{subfigure}{.5\textwidth}
+	% 		\centering
+	% 		\includegraphics[ width = .3\textwidth]{media/bert-head_orig.jpeg}
+	% 		\caption{Transformer Model Architecture (Vaswani et al., 2017)}
+	% 	\end{subfigure}
+	% \end{figure}
 	\begin{figure}[H]
-		\includegraphics[ width = .3\textwidth]{media/transformer.png}
+		\centering
+		\includegraphics[ width = .35\textwidth]{media/transformer.png}
 		\caption{Transformer Model Architecture (Vaswani et al., 2017)}
 	\end{figure}
-	\begin{figure}[H]
-		\includegraphics[ width = .3\textwidth]{media/bert-head_orig.jpeg}
-	\end{figure}
+
 
 \end{frame}
 
@@ -119,13 +147,12 @@
 
 
 %Adversarial Attacks Motivation Conclusion - Statement Papernot
-\begin{frame}
-	\frametitle{Adversarial Attacks}
-	\centering\textit{“We’re starting to deploy machine learning as a technology that can fail so we need to have some checks in place.”}
-	\centering\textit{Nicolas Papernot, 2017}
+% \begin{frame}
+% 	\frametitle{Adversarial Attacks}
+% 	\centering\textit{“We’re starting to deploy machine learning as a technology that can fail so we need to have some checks in place.”}
+% 	\centering\textit{Nicolas Papernot, 2017}
 
-\end{frame}
-
+% \end{frame}
 
 
 % Rectangle 1
@@ -145,7 +172,66 @@
 	\\[13pt]
 	\centering{Aspect-based Sentiment Analysis}
 	\pause
+	\\[11pt]
+
+
+	\begin{columns}[T] % align columns
+		\begin{column}{.5\textwidth}
+			\begin{minipage}[t]{0.5\linewidth}
+				\begin{varblock}[8cm]{Dataset}
+					\begin{itemize}
+
+						\footnotesize\item Labels contain a set of \textbf{Entity - Attribute - Sentiment}
+						\item 23 Entities - 9 Attributes - 3 Sentiments (POS, NEG, NEU)
+						      \\[7pt]
+						\item \textbf{Entity:} reviewd entity
+						\item \textbf{Attribute:} particular attribute of an entity
+						\item \textbf{Sentiment:} polarity towards the entity and its attribute
+
+					\end{itemize}
+				\end{varblock}
+			\end{minipage}
+		\end{column}%
+		\hfill%
+		\begin{column}{0.4\textwidth}
+
+			\begin{minipage}[t]{0.8\linewidth}
+
+				\begin{figure}[H]
+					\centering
+					\includegraphics[ width = 1\textwidth]{media/semeval.png}
+					%\caption{Laptop Entity Aspect Categproes (Pontiki et al., 2015)}
+				\end{figure}
+
+			\end{minipage}
+		\end{column}%
+	\end{columns}
+\end{frame}
+
+
+
+
+
+
+% Rectangle 1
+\begin{frame}[plain]
+	\frametitle{Adversarial Attacks against BERT for ABSA}
+
+	\tikzset{every picture/.style={line width=0.75pt}}
+
+	\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+
+		%Rectangle 1
+		\draw  [fill={rgb, 255:red, 224; green, 224; blue, 224 }  ,fill opacity=1 ][line width=0.75]  (94.75,13.45) -- (599.75,13.45) -- (599.75,49.73) -- (94.75,49.73) -- cycle ;
+		\draw (228.63,23.59) node [anchor=north west][inner sep=0.75pt]   [align=left] {1. Fine-Tuning BERT base for ABSA};
+
+	\end{tikzpicture}
 	\\[13pt]
+
+
+	\centering{Aspect-based Sentiment Analysis}
+	\\[13pt]
+
 	\centering{\textit{The computer is excellent for gaming but I think it is way too expensive!!}}
 
 \end{frame}
@@ -504,7 +590,22 @@
 \begin{frame}
 	\frametitle{Qualitative Results}
 
-	tba
+	\begin{table}[ht]
+		\centering
+		\resizebox{.85\textwidth}{!}{%
+			\begin{tabular}{lccc}
+				\toprule
+				\textbf{Perturbation Method}                               & \textbf{Leetspeak} & \textbf{ Misspellings} & \textbf{Punctuation} \\ \midrule
+				Dataset A - \# of original sentences                       & 943                & 943                    & 943                  \\ %\hline
+				Dataset B - \# of modifiable original sentences            & 897                & 369                    & 943                  \\ %\hline
+				Dataset C - \# of adversarial sentences                    & 2232               & 1354                   & 2555                 \\ %\hline
+				Dataset D - \# of changed predictions through modification & 1066               & 420                    & 382                  \\ \midrule
+				\textbf{Attack Success Rate}                               & \textbf{47.76\%}   & \textbf{31.01\%}       & \textbf{14.95\%}     \\ \bottomrule
+			\end{tabular}%
+		}
+		\caption{Comparison of the success rates of the three attack methods.}
+
+	\end{table}
 \end{frame}
 
 % Conclusion
