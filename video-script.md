@@ -62,13 +62,23 @@ Since textual data is discrete, we could not use gradient-based methods as appli
 Let's get into it.
 -------------
 ### Method Step 1
-We started off with training a BERT base model on the laptop domain and fine-tune it on the ABSA task in a second step. To do so we used the SemEval 2015 Task 12, which is considered a benchmark dataset for research on the ABSA task. 
-
-An aspect category is defined as a combination of an entity and an attribute describing the entity. The second part of the annotation is the sentiment label, which expresses the polarity towards the aspect category and can take on the values positive, neutral, and negative. 
+We started off with training a BERT base model on the laptop domain ... 
 
 
 -------------
-### Method Step 1 – ABSA – example sentence
+### Method Step 1 – ABSA 
+... and fine-tune it on the ABSA task in a second step. 
+
+
+-------------
+### Method Step 1 – SemEval 2015 
+
+To do so we used the SemEval 2015 Task 12, which is considered a benchmark dataset for research on the ABSA task. 
+
+An aspect category is defined as a combination of an entity and an attribute describing the entity. The second part of the annotation is the sentiment label, which expresses the polarity towards the aspect category and can take on the values positive, neutral, and negative. 
+
+-------------
+### Method Step 1 – ABSA – Example Sentence
 Let’s see ABSA in action, using an example from the dataset:
 *The computer is excellent for gaming but I think it is way too expensive!!*
 
@@ -179,7 +189,10 @@ For the case of our example sentence "It's wonderful for computer gaming" we wer
 
 
 -------------
-### Qualitative Results – Conclusion
+### Conclusion & Further Steps
+
+Let's conclude.
+
 
 DNN-based text classification continuously gains importance for enhancing the safety of users, for example in online forums or social media, where leetspeak is commonly used. 
 

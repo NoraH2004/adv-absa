@@ -586,7 +586,8 @@
 
 \end{frame}
 
-% Results
+%todo: onslide one after the other column..
+% Results Total
 \begin{frame}
 	\frametitle{Qualitative Results}
 
@@ -595,12 +596,14 @@
 		\resizebox{.85\textwidth}{!}{%
 			\begin{tabular}{lccc}
 				\toprule
-				\textbf{Perturbation Method}                               & \textbf{Leetspeak} & \textbf{ Misspellings} & \textbf{Punctuation} \\ \midrule
-				Dataset A - \# of original sentences                       & 943                & 943                    & 943                  \\ %\hline
-				Dataset B - \# of modifiable original sentences            & 897                & 369                    & 943                  \\ %\hline
-				Dataset C - \# of adversarial sentences                    & 2232               & 1354                   & 2555                 \\ %\hline
-				Dataset D - \# of changed predictions through modification & 1066               & 420                    & 382                  \\ \midrule
-				\textbf{Attack Success Rate}                               & \textbf{47.76\%}   & \textbf{31.01\%}       & \textbf{14.95\%}     \\ \bottomrule
+				\textbf{Perturbation Method}                       & \textbf{Leetspeak} & \textbf{ Misspellings} & \textbf{Punctuation} \\ \midrule
+				Dataset A - \# of original sentences               & 943                & 943                    & 943                  \\ %\hline
+				Dataset B - \# of modifiable original sentences    & 897                & 369                    & 943                  \\ %\hline
+				Dataset C - \# of adversarial sentences            & 2232               & 1354                   & 2555                 \\ %\hline
+				Dataset D - \# of changed predictions total        & 1066               & 420                    & 382                  \\ %\hline
+				Dataset E - \# of changed predictions per sentence & 790                & 259                    & 253                  \\ \midrule
+				\textbf{Overall Success Rate}                      & \textbf{47.76\%}   & \textbf{31.01\%}       & \textbf{14.95\%}     \\ \bottomrule
+				\textbf{Distinct Success Rate}                     & \textbf{88.07\%}   & \textbf{70.19\%}       & \textbf{26.83\%}     \\ \bottomrule
 			\end{tabular}%
 		}
 		\caption{Comparison of the success rates of the three attack methods.}
@@ -610,11 +613,29 @@
 
 % Conclusion
 \begin{frame}
-	\frametitle{Conclusion}
+	\frametitle{Conclusion \& Further Steps}
+	\begin{block}{Summary}
+		\begin{itemize}
+			\item BERT can be fooled by input modofications
+			\item Three attack methods:
+			      \begin{itemize}
+				      \item Leetspeak
+				      \item Misspellings
+				      \item Falsly placed Punctuation
+			      \end{itemize}
+		\end{itemize}
+	\end{block}
+	\begin{block}{Next Steps}
+		\begin{itemize}
+			\item Transferability between Transformer Models
+			\item Using generated adversarial datasets for Adversarial Training
 
-	\centering{\textit{Our reliance on deep learning based language models for real-world (security-relevant) applications is questionable.
-		}}
+		\end{itemize}
+	\end{block}
+
 \end{frame}
+
+
 
 
 % Titlepage - FIN
