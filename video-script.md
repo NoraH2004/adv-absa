@@ -13,14 +13,14 @@ According to http://www.speechinminutes.com/ this makes 10.9 Minutes, when talki
 ## Titlepage
 
 
-Hello and welcome everyone! My name is Nora Hofer.  In the last year, I researched the robustness of a BERT Model for the ABSA task against adversarial attacks.
+Hello and welcome everyone! My name is Nora Hofer.  In the last year, we researched the robustness of a BERT Model for the ABSA task against adversarial attacks.
 
 But what does all of that mean?
 
 -------------
 ### BERT 
 
-Let’s start with BERT. BERT is a transformer-based language model introduced in 2018 by Google researchers. Since then it is the state-of-the-art transformer model applied in Natural Language Processing tasks. 
+Let’s start with BERT. BERT is a transformer-based language model introduced in 2018 by Google researchers. Since then it is the state-of-the-art model applied in Natural Language Processing tasks. 
 
 One of these tasks is called ABSA, which is an abbreviation for Aspect Based Sentiment Analysis. A fine-grained Sentiment Analysis that extracts both, the aspect mentioned in a sentence and the sentiment associated with these aspects. 
 
@@ -28,7 +28,7 @@ One of these tasks is called ABSA, which is an abbreviation for Aspect Based Sen
 -------------
 ### Adversarial Examples Panda
 Leaving us with Adversarial Attacks:
-In 2013, the term adversarial example was introduced to describe scenarios where an adversary crafts inputs with the intention to cause a deep learning classifier to misclassify inputs. 
+Adversarial Examples are minimally altered, carefully crafted inputs with the intention to cause a model to misclassify inputs.
 
 
 -------------
@@ -98,7 +98,7 @@ To do so we used a method called Leave-One-Out Method.
 ### Method Step 2 – Sentece Words dropped & classified
 
 We took each sentence and dropped one word after the other. After that, each incomplete sentence is predicted and the words, which changed the prediction through their absence, are stored separately. 
-In the example of our sentence - The important word is *excellent*.
+In the example of our sentence - The only important word is *excellent*.
 
 
 
@@ -134,13 +134,13 @@ The first one is leetspeak.
 
 It is characterized by the use of non-alphabet characters to substitute one or multiple letters of one word with visually similar-looking symbols, so-called homoglyphs. We generate adversarial examples by swapping the letters a, e, l, o, and s of the identified important words with the numbers 4, 3, 1, 0, and 5, respectively.
 
-See here the resulting adversarial example sentence after the modification of the important word, which causes the classifier to switch from Gaming - positive to Gaming - negative.
+See here the resulting adversarial example sentence after the modification, which causes the classifier to switch from Gaming - positive to Gaming - negative.
 
 
 -------------
 ### Misspelling
 The second one is misspellings. 
-Inspired by [24], we use a list of common misspellings from Wikipedia to generate adversarial examples. We first determine the important words and then replace them with all possible misspellings. 
+Inspired by [24], we use a list of common misspellings from Wikipedia to generate adversarial examples. After determining the important words we replace them with all possible misspellings. 
 Also here, the semantic meaning of the modified word is preserved and the modification is unobtrusive to a reader. 
 
 Through the modification, the classifier is no longer able to detect the positive sentiment towards the aspect gaming. 
@@ -160,13 +160,13 @@ The efficiency of our attacks is measured using a distinct and an overall succes
 The scores are calculated as follows:
 
 To generate Dataset A, we filtered the SemEval 2015 dataset for unique items, resulting in 943 sentences.
-We then use the LOO method to detect important words for all sentences in Dataset A, resulting in Dataset B. As you can see, for the punctuation method, by nature every sentence is modifiable. 
+We then use the LOO method to detect important words for all sentences in Dataset A and check if any of the important words can be modified, resulting in Dataset B. As you can see, for the punctuation method, by nature every sentence is modifiable. 
 In the next step, we created all possible potential adversarial examples from Dataset B, for example, all possible misspellings for all identified important words, which we call Dataset C.
 Remember, that one sentence can potentially have more than one important word. 
 
 Finally, we use the BERT model to predict the aspect and sentiment of all elements from Dataset C and compare the predictions to the original one. 
 
-A classification is considered incorrect if fewer or additional labels were predicted or at least the predicted labels change.
+A classification is considered incorrect if fewer or additional labels were predicted or at least one of the predicted labels change.
 
 Dataset D contains all sentences from Dataset C, that were changed in one of the mentioned ways. 
 Dataset E contains all sentences from Dataset B, that were changed in one of the mentioned ways. That means, if per sentence, one modification caused the prediction to change, the sentence is counted as adversarial and added to dataset E.
@@ -196,7 +196,7 @@ Let's conclude.
 
 DNN-based text classification continuously gains importance for enhancing the safety of users, for example in online forums or social media, where leetspeak is commonly used. 
 
-Our experiments demonstrate that BERT can be fooled by input modifications on the character level, imitating real-world scenarios in the black-box setting.
+Our experiments demonstrate that BERT-based ABSA models can be fooled by input modifications on the character level, imitating real-world scenarios in the black-box setting.
 
 We were able to generate samples that are valid and do not change human judgment, yet cause the classifier to produce false output labels.
 The paper is intended to raise awareness about the potential vulnerability of the BERT model and encourages us to not entirely rely on these models for security-relevant tasks, such as the detection of hate speech or false information.
