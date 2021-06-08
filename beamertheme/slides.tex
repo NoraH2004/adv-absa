@@ -13,8 +13,7 @@
 \usepackage{stmaryrd}
 \usepackage{tikzsymbols}
 \usepackage{subcaption}
-
-
+%\usepackage{fontawesome}
 
 
 \newenvironment<>{varblock}[2][.9\textwidth]{%
@@ -49,6 +48,7 @@
 %%%%%%%%%%%%%%%%%%%
 \begin{document}
 \setbeamertemplate{caption}{\raggedright\insertcaption\par}
+
 
 
 
@@ -178,7 +178,7 @@
 	\begin{columns}[T] % align columns
 		\begin{column}{.5\textwidth}
 			\begin{minipage}[t]{0.5\linewidth}
-				\begin{varblock}[8cm]{Dataset}
+				\begin{varblock}[8cm]{Dataset: SemEval-2015 Task 12}
 					\begin{itemize}
 
 						\footnotesize\item Labels contain a set of \textbf{Entity - Attribute - Sentiment}
@@ -633,6 +633,23 @@
 		\end{itemize}
 	\end{block}
 
+\end{frame}
+
+% Personal
+\begin{frame}
+	\frametitle{Thank you!}
+	\textit{Adversarial Examples Against A BERT ABSA Model -
+		\\[13pt]
+		Fooling BERT with L\colorbox{Salmon}{33T}, Misspelli\colorbox{Salmon}{gn}, and Punctuation\colorbox{Salmon}{,}
+	}
+	\\[20pt]
+
+	%todo: add icons
+	%https://latexdraw.com/fontawesome-ready-icons-to-use-in-latex/
+	% no idea why this is not working
+	\textbf{Github:} https://github.com/NoraH2004/adv-absa
+	\\[5pt]
+	\textbf{Email:} nora.hofer@uibk.ac.at
 \end{frame}
 
 
