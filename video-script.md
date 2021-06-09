@@ -13,7 +13,7 @@ According to http://www.speechinminutes.com/ this makes 10.9 Minutes, when talki
 ## Titlepage
 
 
-Hello and welcome everyone! My name is Nora Hofer.  In the last year, we researched the robustness of a BERT Model for the ABSA task against adversarial attacks.
+Hello and welcome everyone! My name is Nora Hofer abd in the last year, we researched the robustness of a BERT Model for the ABSA task against adversarial attacks.
 
 But what does all of that mean?
 
@@ -110,7 +110,7 @@ In the third step, we modify the identified important words to generate adversar
 -------------
 ### Method Step 3 – Modification Methods
 
-We designed three attack methods, namely Leetspeak, misspellings, and falsely placed punctuation marks.
+We designed three attack methods, namely Leetspeak, misspellings, and misplaced punctuation marks.
 
 
 Different variations of word-, or character level-based perturbations have been proposed in the literature. Examples include replacing, deleting, swapping, or inserting words or characters. By design, we have opted for perturbation methods on the character level since they most likely do not alter an input sequence’s semantic meaning or grammar.
@@ -162,11 +162,11 @@ The scores are calculated as follows:
 To generate Dataset A, we filtered the SemEval 2015 dataset for unique items, resulting in 943 sentences.
 We then use the LOO method to detect important words for all sentences in Dataset A and check if any of the important words can be modified, resulting in Dataset B. As you can see, for the punctuation method, by nature every sentence is modifiable. 
 In the next step, we created all possible potential adversarial examples from Dataset B, for example, all possible misspellings for all identified important words, which we call Dataset C.
-Remember, that one sentence can potentially have more than one important word. 
+Remember, that a sentence can potentially have more than one important word. 
 
 Finally, we use the BERT model to predict the aspect and sentiment of all elements from Dataset C and compare the predictions to the original one. 
 
-A classification is considered incorrect if fewer or additional labels were predicted or at least one of the predicted labels change.
+A classification is considered incorrect if fewer or more labels were predicted or at least one of the predicted labels change.
 
 Dataset D contains all sentences from Dataset C, that were changed in one of the mentioned ways. 
 Dataset E contains all sentences from Dataset B, that were changed in one of the mentioned ways. That means, if per sentence, one modification caused the prediction to change, the sentence is counted as adversarial and added to dataset E.
@@ -175,7 +175,7 @@ Dataset E contains all sentences from Dataset B, that were changed in one of the
 The overall success rate is calculated as the ratio Dataset D / Dataset C. 
 And the distinct success rate is calculated as the ratio Dataset E / Dataset B.
 
-An overall success rate of 100% would mean that any sentence containing an important word modified by one of my three methods caused BERT to predict an incorrect classification. 
+An overall success rate of 100% would mean that any sentence containing an important word modified by one of our three methods caused BERT to predict an incorrect classification. 
 
 
 When using leetspeak, we achieved an overall success rate of 47.8% and a distinct success rate of 88% making it the most effective perturbation method.
