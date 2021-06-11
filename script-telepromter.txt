@@ -1,0 +1,119 @@
+Hello and welcome! My name is Nora Hofer and in the last year, my colleagues and I researched the robustness of a BERT Model for the ABSA task against adversarial attacks.
+
+But what does all of that mean?
+
+Let’s start with BERT. BERT is the state-of-the-art transformer-based language model applied in Natural Language Processing tasks. 
+
+One of these tasks is called ABSA, which is a more fine-grained, Aspect-based, Sentiment Analysis task.
+
+Leaving us with Adversarial Attacks:
+Adversarial Examples are minimally altered inputs that a model misclassifies.
+
+This phenomenon is highly concerning and very much related to security issues. While it is widely studied in computer vision, these risks also occur in other fields.  
+
+In times of the COVID-19 pandemic, we once again see the importance of preventing the spread of misinformation on the Internet. 
+
+One possible solution is the automated detection and classification of untrustworthy information. 
+
+Here you can see a Tweet containing misleading information about a cure for a Covid-19 Infection. The algorithm labels this tweet as critical and provides a link to further information. 
+
+Through small modifications, in this case replacing the letter o with the number 0 in the word COVID, an attacker can theoretically circumvent the detector. Recipients of the fake news would hardly notice that the sentence was deliberately manipulated.
+
+There are tons of real-world scenarios where deep learning can and will be used. But when we apply it to security-critical areas, we need to know about their vulnerabilities.
+
+Our research investigates three attacks on BERT for a classification task that could easily happen in a real-world setting. 
+
+Let's get into it.
+
+
+
+We started off with training a BERT base model on the laptop domain ... and fine-tune it on the ABSA task in a second step. 
+
+
+To do so we used the SemEval 2015 Task 12, which is considered a benchmark dataset for research on the ABSA task. 
+
+An aspect category is defined as a combination of an entity and an attribute describing the entity. The second part of the annotation is the sentiment label, which expresses the polarity towards the aspect category and can take on the values positive, neutral, and negative. 
+
+Let’s see ABSA in action, using an example from the dataset:
+*The computer is excellent for gaming but I think it is way too expensive!!*
+
+In this case, the model identifies the aspects gaming (having a positive sentiment) and price (with a negative sentiment).
+
+In the second step, we used the trained ABSA Model to identify the word of a sentence, which is important for the model’s prediction.
+
+To do so we used a method called Leave-One-Out Method.
+
+We took each sentence and dropped one word after the other. After that, each incomplete sentence is predicted and the words, which changed the prediction through their absence, are stored separately. 
+In the example of our sentence - The only important word is *excellent*.
+
+In the third step, we modify the identified important words to generate adversarial examples.
+
+We designed three attack methods, namely Leetspeak, misspellings, and misplaced punctuation marks.
+
+We believe that practical relevance is important for research in adversarial machine learning. Therefore we pursued the following objectives:
+(1) keeping semantic meaning of the input data
+(2) inconspicuousness to a human observer
+(3) relevance in a real-world scenario.
+
+Since textual data is discrete, we could not use gradient-based methods for any of our attacks.
+
+Let’s look into the attacks.
+
+The first one is leetspeak.
+We generate adversarial examples by substituting suitable letters with visually similar-looking numbers, so-called homoglyphs. 
+
+See here the resulting adversarial example sentence after modification, which causes the classifier to switch from Gaming - positive to Gaming - negative.
+
+
+The second one is misspellings. 
+Inspired by Sun et al., we use a list of common misspellings from Wikipedia to generate adversarial examples. We replace the important words with all possible misspellings. 
+
+Through the modification, the classifier is no longer able to detect the positive sentiment towards the aspect gaming. 
+
+
+The last one is the punctuation method. It is also the simplest one, where we wanted to find out whether a single comma added after the important word poses an efficient way to cause misclassifications. Additional commas might occur in practical use cases and is not easily identified as an adversarial example by a human observer. 
+
+Here the classifier falsely detects a negative sentiment about the Laptop in general. 
+
+
+Let's look at the results for the whole dataset. 
+
+The efficiency of our attacks is measured using a distinct and an overall success rate. 
+The scores are calculated as follows:
+
+To generate Dataset A, we filtered the SemEval dataset for unique items, resulting in 943 sentences.
+We then use the LOO method to detect important words for all sentences in Dataset A and check if any of the important words can be modified, resulting in Dataset B. As you can see, for the punctuation method, by nature every sentence is modifiable. 
+In the next step, we created all possible potential adversarial examples from Dataset B which we call Dataset C.
+Remember, that a sentence can have more than one important word. 
+
+Finally, we use the BERT model to predict the aspect and sentiment of all elements from Dataset C and compare the predictions to the original one. 
+
+A classification is considered incorrect if the number of labels, or their values change.
+
+Dataset D contains all successful samples from Dataset C and Dataset E contains all  successful samples from Dataset B. That means, if per sentence, one modification caused the prediction to change, the sentence is counted as adversarial and added to dataset E.
+
+
+The overall success rate is calculated as the ratio Dataset D (divided by) Dataset C. 
+And the distinct success rate is calculated as the ratio Dataset E (divided by) Dataset B.
+
+
+When using leetspeak, we achieved an overall success rate of 47.8% and a distinct success rate of 88% making it the most effective perturbation method.
+The misspelling method was also very effective, which is even more surprising, considering that the misspellings dictionary that we used consisted of typos found in Wikipedia articles and the BERT model is pre-trained on Wikipedia corpus. We achieved an overall, and a distinct success rate of 31, and 70% respectively.
+With, as mentioned only adding one comma behind the important word, we were able to achieve an overall success rate of almost 15% and a distinct success rate of 27%. 
+
+
+Let's conclude.
+
+Our experiments demonstrate that BERT-based ABSA models can be fooled by input modifications on the character level. Simple manipulations, that are unsuspicious and likely to happen in a real world setting cause the classifier to produce false outputs.  
+DNN-based text classification continuously gains importance for enhancing the safety of users, for example in online forums or social media. 
+
+
+The paper is intended to raise awareness about the potential vulnerability of the BERT model and encourages us to not entirely rely on these models for security-relevant tasks, such as the detection of hate speech or false information.
+Testing our generated adversarial datasets on other language models as a next step would provide information about the “transferability” of our attacks. Additionally, established countermeasures, such as adversarial training should be further investigated for their effectiveness. Our result dataset can be used in the process to increase the robustness against such attacks. 
+
+Finally, we want to mention that we choose the title as it is intentionally, including the modifications and misspelling, to highlight our proposed attacks.
+
+If you liked this presentation and are interested, I recommend reading the paper and/or looking into our GitHub to find the code, as well as the generated adversarial datasets.
+Also, do not hesitate to reach out, if you have any questions or comments.
+
+Thank you for listening.

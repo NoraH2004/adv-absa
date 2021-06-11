@@ -13,14 +13,14 @@ According to http://www.speechinminutes.com/ this makes 10.9 Minutes, when talki
 ## Titlepage
 
 
-Hello and welcome everyone! My name is Nora Hofer abd in the last year, we researched the robustness of a BERT Model for the ABSA task against adversarial attacks.
+Hello and welcome! My name is Nora Hofer and in the last year, my colleagues and I researched the robustness of a BERT Model for the ABSA task against adversarial attacks.
 
 But what does all of that mean?
 
 -------------
 ### BERT 
 
-Let’s start with BERT. BERT is a transformer-based language model introduced in 2018 by Google researchers. Since then it is the state-of-the-art model applied in Natural Language Processing tasks. 
+Let’s start with BERT. BERT is the state-of-the-art transformer-based language model applied in Natural Language Processing tasks. 
 
 One of these tasks is called ABSA, which is an abbreviation for Aspect Based Sentiment Analysis. A fine-grained Sentiment Analysis that extracts both, the aspect mentioned in a sentence and the sentiment associated with these aspects. 
 
@@ -113,8 +113,6 @@ In the third step, we modify the identified important words to generate adversar
 We designed three attack methods, namely Leetspeak, misspellings, and misplaced punctuation marks.
 
 
-Different variations of word-, or character level-based perturbations have been proposed in the literature. Examples include replacing, deleting, swapping, or inserting words or characters. By design, we have opted for perturbation methods on the character level since they most likely do not alter an input sequence’s semantic meaning or grammar.
-
 All our adversarial changes are supposed to prevent humans from easily spotting them. 
 
 -------------
@@ -132,7 +130,7 @@ Let’s look into the attacks.
 
 The first one is leetspeak.
 
-It is characterized by the use of non-alphabet characters to substitute one or multiple letters of one word with visually similar-looking symbols, so-called homoglyphs. We generate adversarial examples by swapping the letters a, e, l, o, and s of the identified important words with the numbers 4, 3, 1, 0, and 5, respectively.
+We generate adversarial examples by acterized by substituting one or multiple letters of one word with visually similar-looking numbers, so-called homoglyphs. 
 
 See here the resulting adversarial example sentence after the modification, which causes the classifier to switch from Gaming - positive to Gaming - negative.
 
@@ -140,8 +138,7 @@ See here the resulting adversarial example sentence after the modification, whic
 -------------
 ### Misspelling
 The second one is misspellings. 
-Inspired by [24], we use a list of common misspellings from Wikipedia to generate adversarial examples. After determining the important words we replace them with all possible misspellings. 
-Also here, the semantic meaning of the modified word is preserved and the modification is unobtrusive to a reader. 
+Inspired by Sun et al., , we use a list of common misspellings from Wikipedia to generate adversarial examples. After determining the important words we replace them with all possible misspellings. 
 
 Through the modification, the classifier is no longer able to detect the positive sentiment towards the aspect gaming. 
 
@@ -194,11 +191,10 @@ For the case of our example sentence "It's wonderful for computer gaming" we wer
 Let's conclude.
 
 
-DNN-based text classification continuously gains importance for enhancing the safety of users, for example in online forums or social media, where leetspeak is commonly used. 
+Our experiments demonstrate that BERT-based ABSA models can be fooled by input modifications on the character level. Simple input manipulations, that are unsuspicious and likely to happen in a real world setting cause the classifier to produce false outpus.  
+DNN-based text classification continuously gains importance for enhancing the safety of users, for example in online forums or social media. 
 
-Our experiments demonstrate that BERT-based ABSA models can be fooled by input modifications on the character level, imitating real-world scenarios in the black-box setting.
 
-We were able to generate samples that are valid and do not change human judgment, yet cause the classifier to produce false output labels.
 The paper is intended to raise awareness about the potential vulnerability of the BERT model and encourages us to not entirely rely on these models for security-relevant tasks, such as the detection of hate speech or false information.
 Testing our generated adversarial datasets on other language models as a next step would provide information about the “transferability” of our attacks. Additionally, established countermeasures, such as adversarial training should be further investigated for their effectiveness in
 the text-domain. Our result dataset can be used in the process to increase the robustness against such attacks. 
